@@ -188,6 +188,26 @@ You&rsquo;ll need to replace 'username&rsquo; with your API key, and password wi
 
 <span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
 </code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -344,6 +364,26 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
 
 <span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
 </code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -463,6 +503,26 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
 <span class="p">}</span>
 
 <span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/fields.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -987,6 +1047,26 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
 </code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/comments.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -1127,6 +1207,26 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
 </code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/comments/count.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -1182,6 +1282,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <h2 id="form-entries">Form Entries</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/wufoo-api-example/entries.json?pretty=true&amp;sort=EntryId&amp;sortDirection=DESC"</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'forms/s1afea8b1vk0jf7/entries.json?sort=EntryId&amp;sortDirection=DESC'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"forms/s1afea8b1vk0jf7/entries.json?sort=EntryId&amp;sortDirection=DESC"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json?sort=EntryId&amp;sortDirection=DESC'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1476,6 +1633,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <h2 id="form-entries-count">Form Entries Count</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries/count.json?pretty=true"</span>
 </code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'forms/s1afea8b1vk0jf7/entries/count.json'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"forms/s1afea8b1vk0jf7/entries/count.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries/count.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -1529,6 +1743,82 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <h2 id="submit-entry">Submit Entry</h2>
 <pre><code class="highlight shell">curl -X POST -d <span class="s2">"Field1=Wufoo"</span> -d <span class="s2">"Field2=Test"</span> -d <span class="s2">"Field105=API-Test"</span> -d <span class="s2">"Field106=42"</span> -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json"</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'Field1'</span> <span class="p">:</span> <span class="s">'Wufoo'</span><span class="p">,</span> 
+        <span class="s">'Field2'</span> <span class="p">:</span> <span class="s">'Test'</span><span class="p">,</span> 
+        <span class="s">'Field105'</span> <span class="p">:</span> <span class="s">'API-Test'</span><span class="p">,</span>
+        <span class="s">'Field106'</span> <span class="p">:</span> <span class="s">'42'</span>
+<span class="p">}</span>
+
+<span class="n">post_data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'forms/s1afea8b1vk0jf7/entries.json'</span><span class="p">,</span> <span class="n">post_data</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"forms/s1afea8b1vk0jf7/entries.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">request</span><span class="p">.</span><span class="nf">set_form_data</span><span class="p">(</span><span class="s1">'Field1'</span> <span class="o">=&gt;</span> <span class="s1">'Wufoo'</span><span class="p">,</span>
+                      <span class="s1">'Field2'</span> <span class="o">=&gt;</span> <span class="s1">'Test'</span><span class="p">,</span>
+                      <span class="s1">'Field105'</span> <span class="o">=&gt;</span> <span class="s1">'API-Test'</span><span class="p">,</span>
+                      <span class="s1">'Field106'</span> <span class="o">=&gt;</span> <span class="s1">'42'</span>
+                      <span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="s1">'Field1=Wufoo&amp;Field2=Test&amp;Field105=API-Test&amp;Field106=42'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">201</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1618,6 +1908,80 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </blockquote>
 <pre><code class="highlight shell">curl -X POST -d <span class="s2">"Field1=Wufoo"</span> -d <span class="s2">"Field2=Test"</span> -d <span class="s2">"Field106=test"</span> -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json"</span>
 </code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'Field1'</span> <span class="p">:</span> <span class="s">'Wufoo'</span><span class="p">,</span> 
+        <span class="s">'Field2'</span> <span class="p">:</span> <span class="s">'Test'</span><span class="p">,</span>
+        <span class="s">'Field106'</span> <span class="p">:</span> <span class="s">'Fail'</span>
+<span class="p">}</span>
+
+<span class="n">post_data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'forms/s1afea8b1vk0jf7/entries.json'</span><span class="p">,</span> <span class="n">post_data</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"forms/s1afea8b1vk0jf7/entries.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">request</span><span class="p">.</span><span class="nf">set_form_data</span><span class="p">(</span><span class="s1">'Field1'</span> <span class="o">=&gt;</span> <span class="s1">'Wufoo'</span><span class="p">,</span>
+                      <span class="s1">'Field2'</span> <span class="o">=&gt;</span> <span class="s1">'Test'</span><span class="p">,</span>
+                      <span class="s1">'Field106'</span> <span class="o">=&gt;</span> <span class="s1">'Fail'</span>
+                      <span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="s1">'Field1=Wufoo&amp;Field2=Test&amp;&amp;Field106=Fail'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span> <span class="o">||</span> <span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">201</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>Here is the corresponding &ldquo;failed&rdquo; PostResponse</p>
@@ -1681,6 +2045,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <h2 id="all-reports">All Reports</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports.json?pretty=true"</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'reports.json'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"reports.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/reports.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1774,6 +2195,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <h2 id="report">Report</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7.json?pretty=true"</span>
 </code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'reports/qa4d98l1ib9or7.json'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"reports/qa4d98l1ib9or7.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -1845,6 +2323,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <h2 id="report-entries">Report Entries</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries.json?pretty=true"</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'reports/qa4d98l1ib9or7/entries.json'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"reports/qa4d98l1ib9or7/entries.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1953,6 +2488,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <h2 id="report-entries-count">Report Entries Count</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries/count.json?pretty=true"</span>
 </code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'reports/qa4d98l1ib9or7/entries/count.json'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"reports/qa4d98l1ib9or7/entries/count.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries/count.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -2006,6 +2598,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <h2 id="report-fields">Report Fields</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/fields.json?pretty=true"</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'reports/qa4d98l1ib9or7/fields.json'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"reports/qa4d98l1ib9or7/fields.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/fields.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2325,6 +2974,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <h2 id="widgets">Widgets</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/widgets.json?pretty=true"</span>
 </code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'reports/qa4d98l1ib9or7/widgets.json'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"reports/qa4d98l1ib9or7/widgets.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/widgets.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -2429,6 +3135,63 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <h2 id="users">Users</h2>
 <pre><code class="highlight shell">curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/users.json?pretty=true"</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'users.json'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"users.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/users.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2568,6 +3331,84 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <h2 id="add-webhook">Add Webhook</h2>
 <pre><code class="highlight shell">curl -X PUT -d <span class="s2">"url=https://www.wufoo.com"</span> -d <span class="s2">"handshakeKey=secret123"</span> -d <span class="s2">"metadata=true"</span> -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webhooks.json"</span>
 </code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'url'</span> <span class="p">:</span> <span class="s">'https://www.wufoo.com'</span><span class="p">,</span> 
+    <span class="s">'handshakeKey'</span> <span class="p">:</span> <span class="s">'secret123'</span><span class="p">,</span>
+    <span class="s">'metadata'</span> <span class="p">:</span> <span class="s">'true'</span>
+<span class="p">}</span>
+
+<span class="n">put_data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">base_url</span><span class="o">+</span><span class="s">'forms/s1afea8b1vk0jf7/webhooks.json'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">put_data</span><span class="p">)</span>
+<span class="n">request</span><span class="o">.</span><span class="n">get_method</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">'PUT'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"forms/s1afea8b1vk0jf7/webhooks.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Put</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">request</span><span class="p">.</span><span class="nf">set_form_data</span><span class="p">(</span><span class="s1">'url'</span> <span class="o">=&gt;</span> <span class="s1">'https://wufoo.com'</span><span class="p">,</span>
+                      <span class="s1">'handshakeKey'</span> <span class="o">=&gt;</span> <span class="s1">'secret123'</span><span class="p">,</span>
+                      <span class="s1">'metadata'</span> <span class="o">=&gt;</span> <span class="s1">'true'</span>
+                      <span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webhooks.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="s1">'url=https://www.wufoo.com&amp;handshakeKey=secret123&amp;metadata=true'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_CUSTOMREQUEST</span><span class="p">,</span> <span class="s1">'PUT'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span> <span class="o">||</span> <span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">201</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request will recieve a response in this format:</p>
@@ -2634,6 +3475,69 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <h2 id="delete-webhook">Delete Webhook</h2>
 <pre><code class="highlight shell">curl -X DELETE -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webhooks/h1elg2i41wauer1.json"</span>
 </code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">base_url</span><span class="o">+</span><span class="s">'forms/s1afea8b1vk0jf7/webhooks/hap0e1c1x5rapc.json'</span><span class="p">)</span>
+<span class="n">request</span><span class="o">.</span><span class="n">get_method</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s">'DELETE'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"forms/s1afea8b1vk0jf7/webhooks/hw271p50lanp7l.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Delete</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webhooks/hjnuh251sepi2x.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_CUSTOMREQUEST</span><span class="p">,</span> <span class="s1">'DELETE'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span> <span class="o">||</span> <span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">201</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre>
 
 <blockquote>
 <p>The above request produces output in this format:</p>
@@ -2683,6 +3587,82 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <p>integrationKey and password values have been redacted. In an actual request, substitute your own key and the user&rsquo;s password</p>
 </blockquote>
 <pre><code class="highlight shell">curl -X POST -d <span class="s2">"integrationKey=XXX"</span> -d <span class="s2">"email=fishbowl@wufoo.com"</span> -d <span class="s2">"password=XXX"</span> -d <span class="s2">"subdomain=fishbowl"</span> -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://wufoo.com/api/v3/login.json"</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
+
+<span class="n">password_manager</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPPasswordMgrWithDefaultRealm</span><span class="p">()</span>
+<span class="n">password_manager</span><span class="o">.</span><span class="n">add_password</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+<span class="n">handler</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">HTTPBasicAuthHandler</span><span class="p">(</span><span class="n">password_manager</span><span class="p">)</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="n">urllib2</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'integrationKey'</span> <span class="p">:</span> <span class="s">'XXX'</span><span class="p">,</span> 
+        <span class="s">'email'</span> <span class="p">:</span> <span class="s">'fishbowl@wufoo.com'</span><span class="p">,</span>
+        <span class="s">'password'</span> <span class="p">:</span> <span class="s">'XXX'</span><span class="p">,</span>
+        <span class="s">'subdomain'</span><span class="p">:</span> <span class="s">'fishbowl'</span>
+<span class="p">}</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlencode</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s">'login.json'</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s2">"net/http"</span>
+<span class="nb">require</span> <span class="s2">"uri"</span>
+<span class="nb">require</span> <span class="s2">"json"</span>
+
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
+
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"forms/s1afea8b1vk0jf7/entries.json"</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">request</span><span class="p">.</span><span class="nf">set_form_data</span><span class="p">(</span><span class="s1">'integrationKey'</span> <span class="o">=&gt;</span> <span class="s1">'XXX'</span><span class="p">,</span>
+                      <span class="s1">'email'</span> <span class="o">=&gt;</span> <span class="s1">'fishbowl@wufoo.com'</span><span class="p">,</span>
+                      <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'XXX'</span><span class="p">,</span>
+                      <span class="s1">'subdomain'</span> <span class="o">=&gt;</span> <span class="s1">'fishbowl'</span>
+                      <span class="p">)</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">start</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">hostname</span><span class="p">,</span> <span class="n">uri</span><span class="p">.</span><span class="nf">port</span><span class="p">,</span> <span class="ss">:use_ssl</span> <span class="o">=&gt;</span> <span class="n">uri</span><span class="p">.</span><span class="nf">scheme</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">http</span><span class="o">|</span>
+  <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nb">puts</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="no">JSON</span><span class="p">[</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">])</span>
+</code></pre>
+<pre><code class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://wufoo.com/api/v3/login.json'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_HTTPAUTH</span><span class="p">,</span> <span class="nx">CURLAUTH_ANY</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>                          
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_FOLLOWLOCATION</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>                           
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERAGENT</span><span class="p">,</span> <span class="s1">'Wufoo Sample Code'</span><span class="p">);</span>
+
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_POST</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_POSTFIELDS</span><span class="p">,</span> <span class="s1">'integrationKey=XXX&amp;mail=fishbowl@wufoo.com&amp;password=XXX&amp;subdomain=fishbowl'</span><span class="p">);</span>
+
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+<span class="nv">$resultStatus</span> <span class="o">=</span> <span class="nb">curl_getinfo</span><span class="p">(</span><span class="nv">$curl</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">200</span> <span class="o">||</span> <span class="nv">$resultStatus</span><span class="p">[</span><span class="s1">'http_code'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">201</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$json</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$response</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$json</span><span class="p">,</span> <span class="nx">JSON_PRETTY_PRINT</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
