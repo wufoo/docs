@@ -50,16 +50,93 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Wufoo API! You can use our API to access Wufoo API endpoints, which can get information on forms, fields, entries, and more. You can also submit new entries,
-and even add or remove Webhooks.</p>
+<p>Welcome to the Wufoo API! You can use our API to access your forms, entries, reports, and more. You can also submit new entries, and even add or remove Webhooks. </p>
 
-<p>There are wrapper libraries for Ruby, PHP, jQuery, Python, and Node, but you can make requests using any HTTP service. You can view basic code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right. All examples use the &lsquo;fishbowl&rsquo; example subdomain. When making your own requests, be sure to use your own account name/subdomain, and your own API Key</p>
+<p>Our v3 API is RESTful, which means you can make requests using any HTTP service. To help you get started with building your own integrations, there are some basic code examples in the area to the right, and you can switch the programming language of the examples with the tabs in the top right. All examples use the &lsquo;fishbowl&rsquo; example subdomain. When making your own requests, be sure to use your own account name/subdomain, and your own API Key.</p>
 
-<blockquote>
-<p>To authenticate, Wufoo uses HTTP Basic Auth:</p>
-</blockquote>
+<h2 id="structure">Structure</h2>
+
+<p>Each resource page will go into more detail, but here&rsquo;s a quick overview of how the Wufoo API is structured</p>
+
+<p>When making a request, you&rsquo;ll use your specific account subdomain. For example: <code class="prettyprint">https://fishbowl.wufoo.com</code></p>
+
+<p>All of our API resources then start with: <code class="prettyprint">/api/v3</code> </p>
+
+<p>To help keep things organized, we&rsquo;ve broken up our API into logical sections based on the different aspects of Wufoo. These are:  </p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Endpoint</th>
+<th>HTTP Methods</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Forms</td>
+<td><code class="prettyprint">/forms</code></td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Entries</td>
+<td><code class="prettyprint">/entries</code></td>
+<td>GET or POST</td>
+</tr>
+<tr>
+<td>Reports</td>
+<td><code class="prettyprint">/reports</code></td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Users</td>
+<td><code class="prettyprint">/users</code></td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Webhooks</td>
+<td><code class="prettyprint">/webhooks</code></td>
+<td>PUT or DELETE</td>
+</tr>
+<tr>
+<td>Login</td>
+<td><code class="prettyprint">/login</code></td>
+<td>POST</td>
+</tr>
+</tbody></table>
+
+<p>Some requests require you to identify the specific resource you&rsquo;re trying to access. The most commonly used example would be a form identifier. To uniquely identify a specific form, you can use either 
+the &ldquo;hashed&rdquo; URL: <code class="prettyprint">/forms/s1afea8b1vk0jf7/</code>
+or the form title: <code class="prettyprint">/forms/wufoo-api-example/</code></p>
+
+<p>Forms and Reports resources have a  &ldquo;hashed&rdquo; and a &ldquo;title&rdquo; identifier. Widgets, Users, and WebHooks resources only have hash identifiers.</p>
+
+<p>Finally, each request will end with a format extension. Our API can return responses in either <code class="prettyprint">.json</code> or <code class="prettyprint">.xml</code> format.</p>
+
+<p>A complete request will look like this: <code class="prettyprint">https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json</code></p>
+
+<h2 id="api-key">API Key</h2>
+
+<p>To use any of the API functions, you&rsquo;ll need to use your Wufoo API Key. If you haven&rsquo;t already, you can follow these steps to locate your key:</p>
+
+<ul>
+<li>Log in to your Wufoo account</li>
+<li>Click the Share button beneath any of your forms </li>
+<li>In the Share menu, click the API Information button to access your API credentials. </li>
+<li>On that page there is a 16 digit code, which is your unique API key.</li>
+</ul>
+
+<aside class="notice">
+Each sub-user on your account has their own API Key. This allows you to still enforce <a href='http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/User-Management'>User Permissions</a>, even with the API
+</aside>
+
+<h2 id="restrictions">Restrictions</h2>
+
+<p>We currently restrict API usage to 5000 requests per key, per day. This means that an account can make 5000 requests per sub-user, per day.</p>
 
 <h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>Here is a sample request, showing the process for authenticating using your API Key:</p>
+</blockquote>
 <pre class="highlight shell"><code><span class="c"># With cURL, you can just pass the "username" and "password" with each request</span>
 curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms.json"</span>
 </code></pre>
@@ -129,12 +206,12 @@ curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footasti
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">AOI6-LFKL-VM1Q-IEX9</code> with your API key and <code class="prettyprint">fishbowl</code> with your own subdomain. The second value <code class="prettyprint">footastic</code> is required, but can be anything</p>
+<p>Make sure to replace <code class="prettyprint">AOI6-LFKL-VM1Q-IEX9</code> with your API key and <code class="prettyprint">fishbowl</code> with your own subdomain. The second value <code class="prettyprint">footastic</code> can be set to anything (we don&rsquo;t check the content).</p>
 </blockquote>
 
 <p>Wufoo uses <a href="http://www.ietf.org/rfc/rfc2617.txt">Basic Auth</a> with API Keys to allow access to the API. </p>
 
-<p>Wufoo expects for the API key to be included as the &#39;username&rsquo; and any value as the &#39;password&rsquo; portion of Basic Auth. If the service you&rsquo;re using doesn&rsquo;t have a built in way to authenticate using Basic Auth, you can set the Authorization header to a base64 encoded string:</p>
+<p>Wufoo expects the API key to be included as the &#39;username&rsquo; and any value as the &#39;password&rsquo; portion of Basic Auth. If the service you&rsquo;re using doesn&rsquo;t have a built in way to authenticate using Basic Auth, you can set the Authorization header to a base64 encoded string:</p>
 
 <p><code class="prettyprint">base64(&#39;username:password&#39;)</code></p>
 
@@ -273,7 +350,7 @@ You&rsquo;ll need to replace 'username&rsquo; with your API key, and password wi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all forms.</p>
+<p>This request returns details on all the forms you have permission to access. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -321,8 +398,42 @@ You&rsquo;ll need to replace 'username&rsquo; with your API key, and password wi
 </tbody></table>
 
 <aside class="success">
-Remember you&rsquo;ll need to authenticate to access this or any other resource
+Remember you&rsquo;ll need to authenticate with your API Key to access this or any other resource
 </aside>
+
+<p>Each Form will be displayed as a separate object made up of these properties:</p>
+
+<p>Name - The title of the form specified in the Form Settings</p>
+
+<p>Description - The description of the form as specified in the Form Settings</p>
+
+<p>Redirect Message - The Confirmation message shown to users after they submit an entry</p>
+
+<p>Url - This is the &ldquo;easy to remember&rdquo; URL used for the form. Since it changes when the form title is changed, we recommend using the &ldquo;hashed&rdquo; URL instead when you need a permanent link. Can be used as a form identifier in other requests</p>
+
+<p>Email - A list of the email addresses that are set to receive Notification emails in the Notification Settings</p>
+
+<p>IsPublic - Indicates whether or not the &ldquo;Public&rdquo; option is enabled, allowing anyone with the link to access the form. Possible values are: 1 = true, 0 = false</p>
+
+<p>Language - Indicates the language set for this account in the Form Settings</p>
+
+<p>StartDate - The date/time the form will be accessible through the public URL</p>
+
+<p>EndDate - The date/time the form will no longer be accessible through the public URL</p>
+
+<p>EntryLimit - The maximum number of entries this form will accept before it is no longer accessible through the public URL</p>
+
+<p>DateCreated - A timestamp of when the form was created. For a duplicated form, this will be the DateCreated for the original form</p>
+
+<p>DateUpdated - A timestamp of when the form was lasted edited in the Wufoo Form Builder</p>
+
+<p>Hash - A permanent, &ldquo;hashed&rdquo; value unique to this form on this user’s account. Can be used as a form identifier in other requests</p>
+
+<p>LinkFields - Link to the Fields API for a list of this form&rsquo;s fields</p>
+
+<p>LinkEntries - Link to the Entries API for a list of entries stored by this form</p>
+
+<p>LinkEntriesCount - Link to the Entries API for a count of the entries stored by this form</p>
 
 <h2 id="form">Form</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json?pretty=true"</span>
@@ -413,9 +524,9 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
 
 </span></code></pre>
 
-<p>This endpoint retrieves a specific form. To identify the desired form, you can either use the form hash or the form title. </p>
+<p>This request returns a specific form. To identify the desired form, you can either use the form hash or the form title. </p>
 
-<aside class="notice">You can find the form identifier in either the Easy to Remember or the Permanent form URLs</aside>
+<aside class="notice">You can find the form identifier in either the Easy to Remember or the Permanent form URLs. Making a request for all Forms will also allow you to locate the form identifiers</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -463,6 +574,8 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
 <td>If set to true, returns the result in a &ldquo;pretty print&rdquo; format</td>
 </tr>
 </tbody></table>
+
+<p>The Form properties are the same as in the All Forms request. The only difference is that this request will only return the identified form.</p>
 
 <h2 id="form-fields">Form Fields</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/fields.json?pretty=true"</span>
@@ -568,7 +681,7 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
 
 </span></code></pre>
 
-<p>This endpoint retrieves the field structure for a specific form.</p>
+<p>This request returns the field structure for a specific form.</p>
 
 <aside class="notice">You&rsquo;ll use the same form identifier as you would for our Form request</aside>
 
@@ -625,9 +738,17 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
 
 <p>Instructions - The Instructions for User (if any).</p>
 
+<p>IsRequired - Whether or not the field has been marked as Required in the Field Settings. This value can be 1 = true or 0 = false</p>
+
 <p>ClassNames - Any values that were added to the CSS Keywords option in the Form Builder.</p>
 
 <p>ID - The API ID for that field. This is what you&rsquo;ll use for <a href="/#submit-entry">submitting new entries</a>, or using URL Modification and Templating</p>
+
+<p>Label - If a field has a SubFields or Choices property (meaning there are multiple fields or options), each sub-field or choice will have its own label. This is the value stored for Dropdown, Multiple Choice, or Checkbox fields. For fields like Name and Address, these are the values of the different sub-fields </p>
+
+<p>DefaultVal - If the field has a Predefined Value set in the Field Settings, it will be displayed here. Otherwise, the value will be &ldquo;0&rdquo;</p>
+
+<p>Page - Indicates which page of the form the field is added to. On a single page form (no Page Breaks) all fields will be on Page 1</p>
 
 <h4 id='checkbox'>Checkbox fields will have SubFields property that is an array of all the field options</h4>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
@@ -685,6 +806,10 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
       </span><span class="s2">"HasOtherField"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
+
+<p>Multiple Choice fields have a <code class="prettyprint">HasOtherField</code> property:</p>
+
+<p>HasOtherField - This value is either true or false and is only set if the &ldquo;Allow Other&rdquo; option was enabled in the Field Settings. When the HasOtherField is true, the last choice is the &ldquo;other&rdquo; field.</p>
 
 <h4 id='dd'>Dropdown fields also have a Choices property: an array of all options</h4>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
@@ -745,6 +870,8 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
       </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field210"</span><span class="w">
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
+
+<p>Dropdown fields have the <code class="prettyprint">HasOtherField</code> property as well, but they can&rsquo;t actually use the &ldquo;Allow Other&rdquo; option like Multiple Choice fields.</p>
 
 <h4 id='address'>Address fields have a SubFields property with one element for each part of the address</h4>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
@@ -898,7 +1025,10 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
       </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field4"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"HasOtherField"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}</span><span class="err">,</span><span class="w">
-    </span><span class="p">{</span><span class="w">
+</span></code></pre>
+
+<p>Each choice also has a Score property, representing that choice&rsquo;s &ldquo;value&rdquo; relative to the other choices. If the Not Applicable option is enabled in the Field Settings, there will be an additional Choice with a score of 0</p>
+<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rating"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="s2">"IsRequired"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
@@ -986,26 +1116,26 @@ Remember you&rsquo;ll need to authenticate to access this or any other resource
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>These are only included if you set the <code class="prettyprint">system=true</code> query parameter
-If you set <code class="prettyprint">system</code> to any value, the fields will be included, so if you don&rsquo;t want the System Fields, leave the <code class="prettyprint">system</code> paramter out (Don&rsquo;t just set it to <code class="prettyprint">false</code>). Also available in the Entries API for more details on the <a href="/#entries-system">System Fields</a></p>
+<p>These are only included if you set the <code class="prettyprint">system</code> query parameter.
+If you set <code class="prettyprint">system</code> to any value (<code class="prettyprint">system=true</code>, <code class="prettyprint">system=false</code>, etc), the fields will be included, so if you don&rsquo;t want the System Fields, leave the <code class="prettyprint">system</code> paramter out (Don&rsquo;t just set it to <code class="prettyprint">false</code>). This parameter is also available in the <a href="/#entries-system">Entries API</a></p>
 
 <p><b>The System Fields are:</b></p>
 
 <p>IP - The IP Address of the user submitting the form.</p>
 
-<p>Last Page Accessed - If a user did not complete the form, this number represents the last page the user did submit.</p>
+<p>LastPage - This represents the last page the user submitted.</p>
 
-<p>Completion Status - Is a one or zero, representing either completed (1) or incomplete.</p>
+<p>CompleteSubmission - Represents either a completed (<code class="prettyprint">1</code>) or incomplete/partial (<code class="prettyprint">0</code>) entry.</p>
 
-<p>Status - Indicates what state your payment is in. An example is ‘Paid’. To see more payment types, check out the payment status documentation</p>
+<p>Status - Indicates the payment status. An example is ‘Paid’. More info <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager#payment">here</a></p>
 
-<p>PurchaseTotal - The total purchase, after discounts, etc.</p>
+<p>PurchaseTotal - The total amount charged for the transaction. This is the final total we send to the payment processor</p>
 
-<p>Currency - The type of currency. An example is USD.</p>
+<p>Currency - The currency used. This is the currency value we send to the payment processor</p>
 
-<p>TransactionId - The confirmation number sent back from the merchant gateway.</p>
+<p>TransactionId - The confirmation number sent back from the payment processor.</p>
 
-<p>MerchantType - The merchant name. An example is authnet</p>
+<p>MerchantType - The name of the payment processor used. This is determined by which pyament integration is set up. There is a full list <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Payment-Settings">here</a></p>
 
 <h2 id="form-comments">Form Comments</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/comments.json?pretty=true"</span>
@@ -1097,6 +1227,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p>This request returns any comments made on this form&rsquo;s entries in the <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager">Entry Manager</a></p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1235,6 +1367,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
   </span><span class="s2">"Count"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p>This request returns a count of all comments made on this form&rsquo;s entries </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1453,7 +1587,7 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves the entries from a specific form. </p>
+<p>This request returns the entries that have been submitted to a specific form. This is the equivalent of viewing your stored entries in the Entry Manager in Wufoo.</p>
 
 <aside class="notice">To identify the desired form, use the form hash or the form title, just like the Form request. </aside>
 
@@ -1514,7 +1648,9 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </tr>
 </tbody></table>
 
-<p><b>Every Entries API call returns five fields with every request. The Default Fields are:</b></p>
+<p>The various <code class="prettyprint">Field##</code> properties correspond to the fields in the <a href="/#form-fields">Form Fields</a></p>
+
+<p><b>Every Entry in an Entries request contains five fields. The Default Fields are:</b></p>
 
 <p>EntryId - This value is the unique identifier for your entry.</p>
 
@@ -1526,23 +1662,23 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <p>UpdatedBy - The user name of the person who updated the entry in the Entry Manager will appear in this element.</p>
 
-<p><b id='entries-system'>The System Fields are:</b></p>
+<p><b id='entries-system'>If you add the <code class="prettyprint">system</code> query parameter, some addtional metadata fields will be included. The System Fields are:</b></p>
 
 <p>IP - The IP Address of the user submitting the form.</p>
 
-<p>Last Page Accessed - If a user did not complete the form, this number represents the last page the user did submit.</p>
+<p>LastPage - This represents the last page the user submitted.</p>
 
-<p>Completion Status - Is a one or zero, representing either completed (1) or incomplete.</p>
+<p>CompleteSubmission - Represents either a completed (<code class="prettyprint">1</code>) or incomplete/partial (<code class="prettyprint">0</code>) entry.</p>
 
-<p>Status - Indicates what state your payment is in. An example is ‘Paid’. To see more payment types, check out the payment status documentation</p>
+<p>Status - Indicates the payment status. An example is ‘Paid’. More info <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager#payment">here</a></p>
 
-<p>PurchaseTotal - The total purchase, after discounts, etc.</p>
+<p>PurchaseTotal - The total amount charged for the transaction. This is the final total we send to the payment processor</p>
 
-<p>Currency - The type of currency. An example is USD.</p>
+<p>Currency - The currency used. This is the currency value we send to the payment processor</p>
 
-<p>TransactionId - The confirmation number sent back from the merchant gateway.</p>
+<p>TransactionId - The confirmation number sent back from the payment processor.</p>
 
-<p>MerchantType - The merchant name. An example is authnet</p>
+<p>MerchantType - The name of the payment processor used. This is determined by which pyament integration is set up. There is a full list <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Payment-Settings">here</a></p>
 
 <h3 id="filtering">Filtering</h3>
 
@@ -1578,11 +1714,13 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </tr>
 </tbody></table>
 
-<aside class="notice">We do not adjust your input fiter date/time, so all dates/times are interpreted as Eastern Standard Time (UTC - 5)</aside>
+<aside class="notice">We do not adjust your input fiter date/time, so all dates/times are interpreted as @todo Eastern Standard Time (UTC - 5)</aside>
 
 <p>Here&rsquo;s an example:</p>
 
 <p><code class="prettyprint">https://fishbowl.wufoo.com/api/v3/entries/s1afea8b1vk0jf7.json?Filter1=EntryId+Is_after+1&amp;Filter2=EntryId+Is_before+200&amp;match=AND</code></p>
+
+<aside class="notice">Multiple filters can be joined, using the `&` operator</aside>
 
 <p><b>Valid Operators</b></p>
 
@@ -1629,6 +1767,35 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <p>Example: </p>
 
 <p><code class="prettyprint">https://fishbowl.wufoo.com/api/v3/entries/s1afea8b1vk0jf7.json?sort=EntryId&amp;sortDirection=DESC</code></p>
+
+<h3 id="paging">Paging</h3>
+
+<p>As mentioned <a href="/#form-entries">above</a>, you can use the <code class="prettyprint">pageStart</code> and <code class="prettyprint">pageSize</code> parameters to change the number of entries returned in your request. For example:</p>
+
+<p><code class="prettyprint">pageStart=5&amp;pageSize=10</code></p>
+
+<p>would give you 10 entries, starting after the first 5. In other words, entries 6-15 @todo</p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pageStart</td>
+<td>0</td>
+<td>The entry that the request will start from</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>25</td>
+<td>The number of entries returned in the request (Maximum of 100)</td>
+</tr>
+</tbody></table>
 
 <h2 id="form-entries-count">Form Entries Count</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries/count.json?pretty=true"</span>
@@ -1700,6 +1867,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span></code></pre>
 
 <h3 id="http-request">HTTP Request</h3>
+
+<p>This request returns a count of the entries stored for a specific form. This can help with deciding on a <a href="/#paging">pageSize</a> for your Entries requests, or determining the number of elements you have to display. This request can also be used with <a href="/filtering">filters</a>, in which case the count will be all entries matching the filter.</p>
 
 <p><code class="prettyprint">GET http://{subdomain}.wufoo.com/api/v3/forms/{identifier}/entries/count.{format}</code></p>
 
@@ -1832,7 +2001,7 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint allows you to submit a new entry to a specific form. </p>
+<p>This request allows you to submit a new entry to a specific form. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2152,7 +2321,7 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all reports.</p>
+<p>This request returns details on all the reports you have permission to access. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2191,6 +2360,30 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <td>If set to true, returns the result in a &ldquo;pretty print&rdquo; format</td>
 </tr>
 </tbody></table>
+
+<p>Each Report will be displayed as a separate object made up of these properties:</p>
+
+<p>Name - The title of the report specified in the Report Builder</p>
+
+<p>Description - The description of the report as specified in the Report Builder</p>
+
+<p>Url - This is the &ldquo;easy to remember&rdquo; URL used for the report. Since it changes when the report title is changed, we recommend using the &ldquo;hashed&rdquo; URL instead when you need a permanent link. Can be used as a report identifier in other requests</p>
+
+<p>IsPublic - Indicates whether or not the &ldquo;Public&rdquo; option is enabled, allowing anyone with the link to access the report. Possible values are: 1 = true, 0 = false</p>
+
+<p>DateCreated - A timestamp of when the report was created. For a duplicated report, this will be the DateCreated for the original report @todo</p>
+
+<p>DateUpdated - A timestamp of when the report was lasted edited in the Wufoo Report Builder</p>
+
+<p>Hash - A permanent, &ldquo;hashed&rdquo; value unique to this report on this user’s account. Can be used as a report identifier in other requests</p>
+
+<p>LinkFields - Link to the Report Fields API for a list of this report&rsquo;s fields</p>
+
+<p>LinkEntries - Link to the Report Entries API for a list of entries stored by this report</p>
+
+<p>LinkEntriesCount - Link to the Report Entries API for a count of the entries stored by this report</p>
+
+<p>LinkWidgets - Link to the Widgets API for the widgets that make up this report</p>
 
 <h2 id="report">Report</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7.json?pretty=true"</span>
@@ -2275,7 +2468,7 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific report. To identify the desired report, you can either use the report hash or the report title. </p>
+<p>This request returns a specific report. To identify the desired report, you can either use the report hash or the report title. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2320,6 +2513,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <td>If set to true, returns the result in a &ldquo;pretty print&rdquo; format</td>
 </tr>
 </tbody></table>
+
+<p>The Report properties are the same as in the All Reporst request. The only difference is that this request will only return the identified report.</p>
 
 <h2 id="report-entries">Report Entries</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries.json?pretty=true"</span>
@@ -2434,7 +2629,7 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves the entries from a specific report. </p>
+<p>This request returns the entries that make up a specific report. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2482,6 +2677,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <td>If set to true, returns the result in a &ldquo;pretty print&rdquo; format</td>
 </tr>
 </tbody></table>
+
+<p>This is essentially an equivalent of the data that would show up in a datagrid widget on the report, or in an exported copy of the report entry data</p>
 
 <aside class="notice">For more details on entry objects, see <a href='/#form-entries'>Form Entries</a></aside>
 
@@ -2553,6 +2750,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
   </span><span class="s2">"EntryCount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"9"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p>This request returns a count of the entries stored for a specific report. This can help with determining the number of elements you have to display. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2924,6 +3123,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>This request returns the field structure for the report&rsquo;s corresponding form.</p>
+
 <p><code class="prettyprint">GET http://{subdomain}.wufoo.com/api/v3/reports/{identifier}/fields.{format}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
@@ -3062,6 +3263,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>This request returns details of the widgets that make up a specific report.</p>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET http://{subdomain}.wufoo.com/api/v3/reports/{identifier}/widgets.{format}</code></p>
@@ -3106,15 +3309,15 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 
 <p>Only Chart, Graph, and Number widgets will be included in the request. Any Text or Datagrid widgets will not be shown. Each widget element will have the following properties:</p>
 
-<p>Name - Is the widget name. This is the friendly name you chose when creating this widget.</p>
+<p>Name - This is the name you chose when creating this widget in the Report Builder.</p>
 
-<p>Size - Graphs (pie, bar, line) have the sizes small, medium and large. Field Charts (fieldChart) have a size of ‘fill’ because they always fill the container they are placed in. Big Numbers (bigNumber) have a size of ‘fixed’ because they are all one size.</p>
+<p>Size - Graphs (pie, bar, line) can be <code class="prettyprint">small</code>, <code class="prettyprint">medium</code> or <code class="prettyprint">large</code>. Charts (fieldChart) will have a size of <code class="prettyprint">fill</code> because they always fill the container they are placed in. Big Numbers (bigNumber) will also have a size of <code class="prettyprint">fill</code> because they are all one size.</p>
 
-<p>Type - The identifier for the widget type. Valid Typeof values are fieldChart, bigNumber, bar, line, and pie.</p>
+<p>Type - The identifier for the widget type. Valid <code class="prettyprint">type</code> values are <code class="prettyprint">fieldChart</code>, <code class="prettyprint">bigNumber</code>, <code class="prettyprint">bar</code>, <code class="prettyprint">line</code>, and <code class="prettyprint">pie</code>.</p>
 
-<p>TypeDesc - A user-friendly version of Typeof.</p>
+<p>TypeDesc - A user-friendly version of the Widget type.</p>
 
-<p>Hash - An unchanging value representing this widget.</p>
+<p>Hash - An unchanging value representing this specific widget on this specific form.</p>
 
 <h4 id='embed-widget'>The hash code for a widget can be used to embed the widget using Javascript</h4>
 
@@ -3260,6 +3463,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>This request returns details of your account&rsquo;s sub-users, including the API Key for each user.</p>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET http://{subdomain}.wufoo.com/api/v3/users.{format}</code></p>
@@ -3298,35 +3503,39 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </tr>
 </tbody></table>
 
-<p>User properties are as follows:</p>
+<p>Each user will have the following properties:</p>
 
-<p>User: Is the user name. This is the friendly name you chose when creating this user.</p>
+<p>User: This is the name chosen when creating this user.</p>
 
 <p>Email: The email address on file for this user.</p>
 
-<p>Timezone: an offset from UTC.</p>
+<p>Timezone: The offset from UTC used for certain account timestamps.</p>
 
 <p>Company: The company defined when this user was created.</p>
 
-<p>IsAccountOwner: Binary value indicating a yes (1) or (0). If the user is an account owner the Create(Forms/Reports/Themes) and AdminAccess values are ignored, as an AccountOwner has full rights to the account.</p>
+<p>IsAccountOwner: Indicates whether the user is the Account Creator. If the user is AccountCreator, the Create(Forms/Reports/Themes) and AdminAccess values are ignored, as an AccountOwner has full rights to the account. Values can be <code class="prettyprint">1</code> (yes) or <code class="prettyprint">0</code> (no)</p>
 
-<p>CreateForms: Binary value indicating whether or not this user may create forms.</p>
+<p>CreateForms: Indicates whether or not this user may create forms. Values can be <code class="prettyprint">1</code> (yes) or <code class="prettyprint">0</code> (no)</p>
 
-<p>CreateReports: Binary value indicating whether or not this user may create reports.</p>
+<p>CreateReports: Binary value indicating whether or not this user may create reports. Values can be <code class="prettyprint">1</code> (yes) or <code class="prettyprint">0</code> (no)</p>
 
-<p>CreateThemes: Binary value indicating whether or not this user may create themes.</p>
+<p>CreateThemes: Binary value indicating whether or not this user may create themes. Values can be <code class="prettyprint">1</code> (yes) or <code class="prettyprint">0</code> (no)</p>
 
-<p>AdminAccess: This is an all-inclusive access right. In other words, if a user has this permission, they may create forms/reports/themes and administer users.</p>
+<p>AdminAccess: This indicates if the user has been designated as an Administrator. If a user has this permission, they may create forms/reports/themes and administer users. Values can be <code class="prettyprint">1</code> (yes) or <code class="prettyprint">0</code> (no)</p>
 
-<p>ApiKey: The authentication token permitting the user to make requests against the system.</p>
+<p>ApiKey: The authentication value used to make API requests for this account. Each API Key is restricted by that user&rsquo;s permissions as set in the account&rsquo;s <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/User-Management">Users tab</a></p>
 
-<p>Hash: An unchanging value representing the user.</p>
+<p>Hash: An unchanging value representing the user on this account.</p>
 
 <p>ImageUrl: Links to the images used for the user&rsquo;s avatar in Wufoo</p>
 
-<p>HttpsEnabled: No longer needed, since all Wufoo forms now use HTTPS unless you decide to <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/URL-Modifications#ssl">manually disable</a> it through the link or embed code</p>
+<p>HttpsEnabled: No longer used, since all accounts can use HTTPS. All Wufoo forms now use HTTPS automatically, unless you decide to <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/URL-Modifications#ssl">manually disable</a> it through the link or embed code</p>
 
           <h1 id="webhooks">Webhooks</h1>
+
+<p>The Webhooks API allows you to add/delete Webhooks on your form, without requiring any manual setup. For example, Zapier uses this to <a href="https://zapier.com/help/wufoo/#using-the-quotnew-entry-webhookquot-trigger">set up a &ldquo;Zap&rdquo;</a> in your forms, without you needing to make any changes.</p>
+
+<p>Reducing the number of steps your user takes to connect your integration to Wufoo can help to increase conversion and decreases user frustration.</p>
 
 <h2 id="add-webhook">Add Webhook</h2>
 <pre class="highlight shell"><code>curl -X PUT -d <span class="s2">"url=https://www.wufoo.com"</span> -d <span class="s2">"handshakeKey=secret123"</span> -d <span class="s2">"metadata=true"</span> -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webhooks.json"</span>
@@ -3420,9 +3629,16 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>This request updates the Webhooks for a specific form. We only allow one Webhook per URL, so if there&rsquo;s a request made for an existing URL, it will simply update, rather than duplicate the Webhook.</p>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">PUT http://{subdomain}.wufoo.com/api/v3/forms/{identifier}/webhooks.{format}</code></p>
+
+<p>A PUT request is <a href="http://stackoverflow.com/questions/46585/when-do-you-use-post-and-when-do-you-use-get/46639#46639">idempotent</a>, which means that you may safely make this call multiple times with the same data. This prevents you from accidentally adding 10 of the same Webhook URLs to one form. For example: 
+- You make one PUT call to the Webhook API with the <code class="prettyprint">url</code>, <code class="prettyprint">metadata</code>, and <code class="prettyprint">handshakeKey</code> parameters
+- Your user decides they want to use a new handshake key. 
+- You make a second API call with the same <code class="prettyprint">url</code>, but a new <code class="prettyprint">handshakeKey</code>, and the API will update the handshake key of the Webhook with that URL to the new <code class="prettyprint">handshakeKey</code> parameter.</p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -3462,8 +3678,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </tr>
 <tr>
 <td>handshakeKey</td>
-<td>None</td>
-<td>Optional. Sets the handshakeKey property, to allow you to reject random POSTs</td>
+<td>N/A</td>
+<td>Optional. Sets the <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Webhooks#getstarted">handshakeKey property</a>. This can be used to help the receipient of the Webhooks ignore unwanted POSTs</td>
 </tr>
 <tr>
 <td>metadata</td>
@@ -3471,6 +3687,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 <td>Optional. If set to true, the Webhook will include form/field structure data in each POST (required for some integrations)</td>
 </tr>
 </tbody></table>
+
+<p>The Webhook PUT request will return a WebHookPutResult object, with a <code class="prettyprint">Hash</code> property: the newly created/updated Webhook&rsquo;s &ldquo;hash.&rdquo; This is an unchanging value representing the Webhook on your form. It&rsquo;s a good idea to save this value, because it acts as the Webhook identifier for a Webhook DELETE request, and you can’t retrieve it without making another request.</p>
 
 <h2 id="delete-webhook">Delete Webhook</h2>
 <pre class="highlight shell"><code>curl -X DELETE -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webhooks/h1elg2i41wauer1.json"</span>
@@ -3549,6 +3767,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>This request allows you to remove a specific Webhook from a specific form.</p>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE http://{subdomain}.wufoo.com/api/v3/forms/{identifier}/webhooks/{webhookHash}.{format}</code></p>
@@ -3579,12 +3799,14 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </tr>
 </tbody></table>
 
+<p>The webhookHash identifier is the value that was returned from the Webhook PUT request that created the Webhook. If you don&rsquo;t have this recorded, you&rsquo;ll need to manually delete the Webhook, or make another PUT request with the same values. Upon a successful deletion, the WebHookDeleteResult object will be returned, with the same <code class="prettyprint">Hash</code> property as a PUT request.</p>
+
           <h1 id="login">Login</h1>
 
 <h2 id="retrieve-api-key">Retrieve API Key</h2>
 
 <blockquote>
-<p>integrationKey and password values have been redacted. In an actual request, substitute your own key and the user&rsquo;s password</p>
+<p>The integrationKey and password values have been redacted. In an actual request, substitute your own key and the user&rsquo;s password</p>
 </blockquote>
 <pre class="highlight shell"><code>curl -X POST -d <span class="s2">"integrationKey=XXX"</span> -d <span class="s2">"email=fishbowl@wufoo.com"</span> -d <span class="s2">"password=XXX"</span> -d <span class="s2">"subdomain=fishbowl"</span> -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://wufoo.com/api/v3/login.json"</span>
 </code></pre>
@@ -3675,6 +3897,8 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<p>This request allows <a href="https://master.wufoo.com/forms/integration-key-application/">approved partners</a> to access users API Keys. This is useful for custom integrations that need to make API requests on behalf of Wufoo users. For example, <a href="https://zapier.com/zapbook/wufoo/">Zapier</a> uses this method to set up new integrations, without requiring users to use or even know their own API Key.</p>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST http://wufoo.com/api/v3/login.{format}</code></p>
@@ -3720,6 +3944,23 @@ If you set <code class="prettyprint">system</code> to any value, the fields will
 </tbody></table>
 
 <aside class="warning">If you submit a request without the subdomain, but there&rsquo;s a conflict, the request will return a 409 error</aside>
+
+<p>A successful response will contain:</p>
+
+<p>ApiKey - This is the user&rsquo;s API Key. You can then use this to make API requests on their behalf.</p>
+
+<p>UserLink - This is a link for the corresponding Users request for this specific user.</p>
+
+<p>Subdomain - The subdomain for the user. You’ll need this to make proper API requests to the user&rsquo;s account.</p>
+
+<h3 id="sub-users-and-multiple-subdomains">Sub-users and Multiple subdomains</h3>
+
+<p>If the user you&rsquo;re trying to access is either:
+- A subuser of the account
+- An Account Creator and/or sub-user on multiple accounts
+the subdomain parameter is required. </p>
+
+<p>If you leave out the subdomain, but one of the above criteria applies, you&rsquo;ll receive a 409 error. To avoid this, we recommend making all requests with the relevant subdomain parameter, even if it&rsquo;s not technically &ldquo;required.&rdquo;</p>
 
           <h1 id="errors">Errors</h1>
 
