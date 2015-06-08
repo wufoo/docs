@@ -146,7 +146,7 @@ Url - This is the "easy to remember" URL used for the report. Since it changes w
 
 IsPublic - Indicates whether or not the "Public" option is enabled, allowing anyone with the link to access the report. Possible values are: 1 = true, 0 = false
 
-DateCreated - A timestamp of when the report was created. For a duplicated report, this will be the DateCreated for the original report @todo
+DateCreated - A timestamp of when the report was created. For a duplicated report, this will be the DateCreated for the original report
 
 DateUpdated - A timestamp of when the report was lasted edited in the Wufoo Report Builder
 

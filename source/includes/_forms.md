@@ -155,6 +155,8 @@ Parameter          | Default | Description
 includeTodayCount  | false   | If set to true, includes the number of entries received today
 pretty             | false   | If set to true, returns the result in a "pretty print" format
 
+If you add the `includeTodayCount` parameter, the value will be returned in the form's `EntryCountToday` property
+
 <aside class="success">
 Remember you'll need to authenticate with your API Key to access this or any other resource
 </aside>
@@ -183,7 +185,7 @@ EntryLimit - The maximum number of entries this form will accept before it is no
 
 DateCreated - A timestamp of when the form was created. For a duplicated form, this will be the DateCreated for the original form
 
-DateUpdated - A timestamp of when the form was lasted edited in the Wufoo Form Builder
+DateUpdated - A timestamp of when the form was lasted edited in the Wufoo Form Builder. For duplicated forms, the original value will also be copied from the original form
 
 Hash - A permanent, "hashed" value unique to this form on this user’s account. Can be used as a form identifier in other requests
 
@@ -468,6 +470,8 @@ DefaultVal - If the field has a Predefined Value set in the Field Settings, it w
 
 Page - Indicates which page of the form the field is added to. On a single page form (no Page Breaks) all fields will be on Page 1
 
+<aside class="warning">Fields that are marked as "Admin Only" are not returned via the API. "Hidden" and encrypted fields will be shown</aside>
+
 
 <h4 id='checkbox'>Checkbox fields will have SubFields property that is an array of all the field options</h4>
 
@@ -701,7 +705,7 @@ Dropdown fields have the `HasOtherField` property as well, but they can't actual
       "ID": "Field222"
     },
 ```
-<h4 id='likert'>Likert fields have a SubFields propertyfor the "rows" and a Choices property for the "columns"</h4>
+<h4 id='likert'>Likert fields have a SubFields property for the "rows" and a Choices property for the "columns"</h4>
 ```json
     {
       "Title": "Likert",
@@ -981,8 +985,10 @@ Parameter | Default | Description
 --------- | ------- | -----------
 pretty    | false   | If set to true, returns the result in a "pretty print" format
 entryId   | N/A     | If set to a number, will only return comments for the specific entry
-pageStart | 0       | The entry that the request will start from
-pageSize  | 25      | The number of entries returned in the request (Maximum of 100)
+pageStart | 0       | The comment that the request will start from
+pageSize  | 25      | The number of comments returned in the request (Maximum of 100)
+
+<aside class="notice">See the Entries API for more details on [paging](/#paging) </aside>
 
 <b>Here are the properties of each Comment:</b>
 

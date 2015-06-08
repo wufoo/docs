@@ -209,11 +209,13 @@ pageSize  | 25      | The number of entries returned in the request (Maximum of 
 
 The various `Field##` properties correspond to the fields in the [Form Fields](/#form-fields)
 
+<aside class="warning">Data in fields that are marked as "Admin Only" are not returned via the API. Data from "hidden" and encrypted fields will be shown</aside>
+
 <b>Every Entry in an Entries request contains five fields. The Default Fields are:</b>
 
 EntryId - This value is the unique identifier for your entry.
 
-DateCreated - The date that this entry was submitted.
+DateCreated - The date that this entry was submitted. The date/time will be recorded in PST/PDT (UTC -8/-7)
 
 Created By - The person who created the entry. If submitted through a form, the value here will be public. If the submission originated in the Entry Manager this value will be the user name of the submitting user.
 
@@ -257,7 +259,7 @@ Filter{##}  | {##} should just be a unique number to identify each filter (1, 2,
 
 Here's an example:
 
-`https://fishbowl.wufoo.com/api/v3/entries/s1afea8b1vk0jf7.json?Filter1=EntryId+Is_after+1&Filter2=EntryId+Is_before+200&match=AND`
+`https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json?Filter1=EntryId+Is_greater_than+1&Filter2=EntryId+Is_less_than+5&match=AND`
 
 <aside class="notice">Multiple filters can be joined, using the `&` operator</aside>
 
@@ -276,20 +278,27 @@ Here's an example:
 - Is_equal_to
 - Is_not_NULL
 
+To filter by a specific date/time, you can use the [MySQL DateTime format](http://dev.mysql.com/doc/refman/5.0/en/datetime.html). This would be written as "YYYY-MM-DD HH:MM:SS" For example:`2009-08-13 11:43:22`
+<aside class="notice">Don't forget to encode things like spaces if you're making a request through the browser</aside>
+
+These times can be entered in PST/PDT (UTC -8/-7)
+
 ### Sorting
 
 Sorting can also be applied using additional query parameters in this format:
 
 `sort={ID}&sortDirection={DESC|ASC}`
 
-Parameter    | Default | Description
------------- | ------- | -----------
-{ID}         | N/A     | The API Field ID for the field you want to use. These values are the same as the "ID" property in a [Fields](/#form-fields) request
+Parameter     | Default | Description
+------------- | ------- | -----------
+sort          | N/A     | The API Field ID for the field you want to use. These values are the same as the "ID" property in a [Fields](/#form-fields) request
 sortDirection | ASC     | The order to sort returned entries: ASC (lowest to highest) or DESC (highest to lowest)
+
+The `sortDirection` parameter will only be applied if it is also used with a `sort` parameter. In other words, the `sortDirection` can only be applied to the sorting used with the `sort` value, not by itself.
 
 Example: 
 
-`https://fishbowl.wufoo.com/api/v3/entries/s1afea8b1vk0jf7.json?sort=EntryId&sortDirection=DESC`
+`https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json?sort=EntryId&sortDirection=DESC`
 
 ### Paging
 
@@ -297,7 +306,7 @@ As mentioned [above](/#form-entries), you can use the `pageStart` and `pageSize`
 
 `pageStart=5&pageSize=10`
 
-would give you 10 entries, starting after the first 5. In other words, entries 6-15 @todo
+would give you 10 entries, starting after the first 5. In other words, entries 6-15
 
 ### Query Parameters
 

@@ -76,6 +76,8 @@ Each sub-user on your account has their own API Key. This allows you to still en
 
 We currently restrict API usage to 5000 requests per key, per day. This means that an account can make 5000 requests per sub-user, per day.
 
+For security, API request can only be made using HTTPS. Our servers will block request made using SSLv3 or lower, so be sure to force TLSv1 or higher if your default SSL/TLS version is different.
+
 # Authentication
 
 > Here is a sample request, showing the process for authenticating using your API Key:
