@@ -132,6 +132,8 @@ Each sub-user on your account has their own API Key. This allows you to still en
 
 <p>We currently restrict API usage to 5000 requests per key, per day. This means that an account can make 5000 requests per sub-user, per day.</p>
 
+<p>For security, API request can only be made using HTTPS. Our servers will block request made using SSLv3 or lower, so be sure to force TLSv1 or higher if your default SSL/TLS version is different.</p>
+
 <h1 id="authentication">Authentication</h1>
 
 <blockquote>
@@ -397,6 +399,8 @@ You&rsquo;ll need to replace 'username&rsquo; with your API key, and password wi
 </tr>
 </tbody></table>
 
+<p>If you add the <code class="prettyprint">includeTodayCount</code> parameter, the value will be returned in the form&rsquo;s <code class="prettyprint">EntryCountToday</code> property</p>
+
 <aside class="success">
 Remember you&rsquo;ll need to authenticate with your API Key to access this or any other resource
 </aside>
@@ -425,7 +429,7 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 
 <p>DateCreated - A timestamp of when the form was created. For a duplicated form, this will be the DateCreated for the original form</p>
 
-<p>DateUpdated - A timestamp of when the form was lasted edited in the Wufoo Form Builder</p>
+<p>DateUpdated - A timestamp of when the form was lasted edited in the Wufoo Form Builder. For duplicated forms, the original value will also be copied from the original form</p>
 
 <p>Hash - A permanent, &ldquo;hashed&rdquo; value unique to this form on this user’s account. Can be used as a form identifier in other requests</p>
 
@@ -750,6 +754,8 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 
 <p>Page - Indicates which page of the form the field is added to. On a single page form (no Page Breaks) all fields will be on Page 1</p>
 
+<aside class="warning">Fields that are marked as &ldquo;Admin Only&rdquo; are not returned via the API. &ldquo;Hidden&rdquo; and encrypted fields will be shown</aside>
+
 <h4 id='checkbox'>Checkbox fields will have SubFields property that is an array of all the field options</h4>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkbox"</span><span class="p">,</span><span class="w">
@@ -978,7 +984,7 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
 
-<h4 id='likert'>Likert fields have a SubFields propertyfor the &ldquo;rows&rdquo; and a Choices property for the &ldquo;columns&rdquo;</h4>
+<h4 id='likert'>Likert fields have a SubFields property for the &ldquo;rows&rdquo; and a Choices property for the &ldquo;columns&rdquo;</h4>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Likert"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1278,14 +1284,16 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <tr>
 <td>pageStart</td>
 <td>0</td>
-<td>The entry that the request will start from</td>
+<td>The comment that the request will start from</td>
 </tr>
 <tr>
 <td>pageSize</td>
 <td>25</td>
-<td>The number of entries returned in the request (Maximum of 100)</td>
+<td>The number of comments returned in the request (Maximum of 100)</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">See the Entries API for more details on [paging](/#paging) </aside>
 
 <p><b>Here are the properties of each Comment:</b></p>
 
@@ -1650,11 +1658,13 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <p>The various <code class="prettyprint">Field##</code> properties correspond to the fields in the <a href="/#form-fields">Form Fields</a></p>
 
+<aside class="warning">Data in fields that are marked as &ldquo;Admin Only&rdquo; are not returned via the API. Data from &ldquo;hidden&rdquo; and encrypted fields will be shown</aside>
+
 <p><b>Every Entry in an Entries request contains five fields. The Default Fields are:</b></p>
 
 <p>EntryId - This value is the unique identifier for your entry.</p>
 
-<p>DateCreated - The date that this entry was submitted.</p>
+<p>DateCreated - The date that this entry was submitted. The date/time will be recorded in PST/PDT (UTC -8/-7)</p>
 
 <p>Created By - The person who created the entry. If submitted through a form, the value here will be public. If the submission originated in the Entry Manager this value will be the user name of the submitting user.</p>
 
@@ -1718,7 +1728,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <p>Here&rsquo;s an example:</p>
 
-<p><code class="prettyprint">https://fishbowl.wufoo.com/api/v3/entries/s1afea8b1vk0jf7.json?Filter1=EntryId+Is_after+1&amp;Filter2=EntryId+Is_before+200&amp;match=AND</code></p>
+<p><code class="prettyprint">https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json?Filter1=EntryId+Is_greater_than+1&amp;Filter2=EntryId+Is_less_than+5&amp;match=AND</code></p>
 
 <aside class="notice">Multiple filters can be joined, using the `&` operator</aside>
 
@@ -1739,6 +1749,11 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <li>Is_not_NULL</li>
 </ul>
 
+<p>To filter by a specific date/time, you can use the <a href="http://dev.mysql.com/doc/refman/5.0/en/datetime.html">MySQL DateTime format</a>. This would be written as &ldquo;YYYY-MM-DD HH:MM:SS&rdquo; For example:<code class="prettyprint">2009-08-13 11:43:22</code>
+<aside class="notice">Don&rsquo;t forget to encode things like spaces if you&rsquo;re making a request through the browser</aside></p>
+
+<p>These times can be entered in PST/PDT (UTC -8/-7)</p>
+
 <h3 id="sorting">Sorting</h3>
 
 <p>Sorting can also be applied using additional query parameters in this format:</p>
@@ -1753,7 +1768,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 </thead><tbody>
 <tr>
-<td>{ID}</td>
+<td>sort</td>
 <td>N/A</td>
 <td>The API Field ID for the field you want to use. These values are the same as the &ldquo;ID&rdquo; property in a <a href="/#form-fields">Fields</a> request</td>
 </tr>
@@ -1764,9 +1779,11 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 </tbody></table>
 
+<p>The <code class="prettyprint">sortDirection</code> parameter will only be applied if it is also used with a <code class="prettyprint">sort</code> parameter. In other words, the <code class="prettyprint">sortDirection</code> can only be applied to the sorting used with the <code class="prettyprint">sort</code> value, not by itself.</p>
+
 <p>Example: </p>
 
-<p><code class="prettyprint">https://fishbowl.wufoo.com/api/v3/entries/s1afea8b1vk0jf7.json?sort=EntryId&amp;sortDirection=DESC</code></p>
+<p><code class="prettyprint">https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json?sort=EntryId&amp;sortDirection=DESC</code></p>
 
 <h3 id="paging">Paging</h3>
 
@@ -1774,7 +1791,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <p><code class="prettyprint">pageStart=5&amp;pageSize=10</code></p>
 
-<p>would give you 10 entries, starting after the first 5. In other words, entries 6-15 @todo</p>
+<p>would give you 10 entries, starting after the first 5. In other words, entries 6-15</p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -2371,7 +2388,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <p>IsPublic - Indicates whether or not the &ldquo;Public&rdquo; option is enabled, allowing anyone with the link to access the report. Possible values are: 1 = true, 0 = false</p>
 
-<p>DateCreated - A timestamp of when the report was created. For a duplicated report, this will be the DateCreated for the original report @todo</p>
+<p>DateCreated - A timestamp of when the report was created. For a duplicated report, this will be the DateCreated for the original report</p>
 
 <p>DateUpdated - A timestamp of when the report was lasted edited in the Wufoo Report Builder</p>
 
