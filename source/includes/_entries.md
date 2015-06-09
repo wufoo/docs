@@ -215,7 +215,7 @@ The various `Field##` properties correspond to the fields in the [Form Fields](/
 
 EntryId - This value is the unique identifier for your entry.
 
-DateCreated - The date that this entry was submitted. The date/time will be recorded in PST/PDT (UTC -8/-7)
+DateCreated - The date that this entry was submitted. The date/time will be recorded in the timezone of the user making the request
 
 Created By - The person who created the entry. If submitted through a form, the value here will be public. If the submission originated in the Entry Manager this value will be the user name of the submitting user.
 
@@ -255,7 +255,7 @@ Filter{##}  | {##} should just be a unique number to identify each filter (1, 2,
 {Value}     | The value to match with your filter
 {Grouping}  | Allows you group your filters as 'AND' (all must match) or 'OR' (at least one must match)
 
-<aside class="notice">We do not adjust your input fiter date/time, so all dates/times are interpreted as @todo Eastern Standard Time (UTC - 5)</aside>
+<aside class="notice">We do not adjust your input fiter date/time, so all dates/times are interpreted as PST/PDT (UTC -8/-7)</aside>
 
 Here's an example:
 
@@ -540,6 +540,8 @@ Here's an example of what the key/value pairs might look like:
     "Field106": "42"
  }`
 
+<aside class="notice">To submit a date value, make sure to use the format YYYYMMDD</aside>
+
 ### Response
 When you make the Entries POST, you'll receive a PostResponse object containing the following:
 
@@ -666,6 +668,8 @@ Success     | Will be '0' if the submission failed.
 ErrorText   | This is some general text related to the error. Equivalent to what would be shown to the user on the actual form
 FieldErrors | This will be an array of ID and ErrorText pairs for each affected field. These would be any error displayed on the field itself
 RedirectUrl | If the form has a [Redirect](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Settings#confirmation) set up, that URL will be included in the response
+
+<aside class="warning">If you get an error about invalid dates, the specified format `MM/DD/YYYY` is incorrect. The correct date format is YYYMMDD</aside>
 
 ### Restrictions
 
