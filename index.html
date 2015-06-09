@@ -746,7 +746,7 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 
 <p>ClassNames - Any values that were added to the CSS Keywords option in the Form Builder.</p>
 
-<p>ID - The API ID for that field. This is what you&rsquo;ll use for <a href="/#submit-entry">submitting new entries</a>, or using URL Modification and Templating</p>
+<p>ID - The API ID for that field. This is what you&rsquo;ll use for <a href="#submit-entry">submitting new entries</a>, or using URL Modification and Templating</p>
 
 <p>Label - If a field has a SubFields or Choices property (meaning there are multiple fields or options), each sub-field or choice will have its own label. This is the value stored for Dropdown, Multiple Choice, or Checkbox fields. For fields like Name and Address, these are the values of the different sub-fields </p>
 
@@ -1123,7 +1123,7 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 </span></code></pre>
 
 <p>These are only included if you set the <code class="prettyprint">system</code> query parameter.
-If you set <code class="prettyprint">system</code> to any value (<code class="prettyprint">system=true</code>, <code class="prettyprint">system=false</code>, etc), the fields will be included, so if you don&rsquo;t want the System Fields, leave the <code class="prettyprint">system</code> paramter out (Don&rsquo;t just set it to <code class="prettyprint">false</code>). This parameter is also available in the <a href="/#entries-system">Entries API</a></p>
+If you set <code class="prettyprint">system</code> to any value (<code class="prettyprint">system=true</code>, <code class="prettyprint">system=false</code>, etc), the fields will be included, so if you don&rsquo;t want the System Fields, leave the <code class="prettyprint">system</code> paramter out (Don&rsquo;t just set it to <code class="prettyprint">false</code>). This parameter is also available in the <a href="#entries-system">Entries API</a></p>
 
 <p><b>The System Fields are:</b></p>
 
@@ -1293,7 +1293,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 </tbody></table>
 
-<aside class="notice">See the Entries API for more details on [paging](/#paging) </aside>
+<aside class="notice">See the Entries API for more details on [paging](#paging) </aside>
 
 <p><b>Here are the properties of each Comment:</b></p>
 
@@ -1656,7 +1656,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 </tbody></table>
 
-<p>The various <code class="prettyprint">Field##</code> properties correspond to the fields in the <a href="/#form-fields">Form Fields</a></p>
+<p>The various <code class="prettyprint">Field##</code> properties correspond to the fields in the <a href="#form-fields">Form Fields</a></p>
 
 <aside class="warning">Data in fields that are marked as &ldquo;Admin Only&rdquo; are not returned via the API. Data from &ldquo;hidden&rdquo; and encrypted fields will be shown</aside>
 
@@ -1708,7 +1708,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 <tr>
 <td>{ID}</td>
-<td>The API Field ID for the field you want to use. These values are the same as the &ldquo;ID&rdquo; property in a <a href="/#form-fields">Fields</a> request</td>
+<td>The API Field ID for the field you want to use. These values are the same as the &ldquo;ID&rdquo; property in a <a href="#form-fields">Fields</a> request</td>
 </tr>
 <tr>
 <td>{Operator}</td>
@@ -1787,7 +1787,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <h3 id="paging">Paging</h3>
 
-<p>As mentioned <a href="/#form-entries">above</a>, you can use the <code class="prettyprint">pageStart</code> and <code class="prettyprint">pageSize</code> parameters to change the number of entries returned in your request. For example:</p>
+<p>As mentioned <a href="#form-entries">above</a>, you can use the <code class="prettyprint">pageStart</code> and <code class="prettyprint">pageSize</code> parameters to change the number of entries returned in your request. For example:</p>
 
 <p><code class="prettyprint">pageStart=5&amp;pageSize=10</code></p>
 
@@ -1885,7 +1885,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p>This request returns a count of the entries stored for a specific form. This can help with deciding on a <a href="/#paging">pageSize</a> for your Entries requests, or determining the number of elements you have to display. This request can also be used with <a href="/filtering">filters</a>, in which case the count will be all entries matching the filter.</p>
+<p>This request returns a count of the entries stored for a specific form. This can help with deciding on a <a href="#paging">pageSize</a> for your Entries requests, or determining the number of elements you have to display. This request can also be used with <a href="/filtering">filters</a>, in which case the count will be all entries matching the filter.</p>
 
 <p><code class="prettyprint">GET http://{subdomain}.wufoo.com/api/v3/forms/{identifier}/entries/count.{format}</code></p>
 
@@ -2048,7 +2048,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <h3 id="post-parameters">POST Parameters</h3>
 
-<p>To submit an entry to a form, you&rsquo;ll need to match the API ID values for each field in the form. You can find these values through a <a href="/#form-fields">Form Fields</a> request, or through your form&rsquo;s <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Templating#api">API Information</a> page.</p>
+<p>To submit an entry to a form, you&rsquo;ll need to match the API ID values for each field in the form. You can find these values through a <a href="#form-fields">Form Fields</a> request, or through your form&rsquo;s <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Templating#api">API Information</a> page.</p>
 
 <p>The POST request should contain the data for the new entry submission in key/value pairs. The key will be the API ID in the format of <code class="prettyprint">Field##</code>, where <code class="prettyprint">##</code> is the API ID for the given field. The value will be your desired entry data, which will be recorded as if a user had submitted that value on the form manually.</p>
 
@@ -2075,7 +2075,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </thead><tbody>
 <tr>
 <td>Success</td>
-<td>Will be &#39;1&rsquo; if the submission was a success. If the submission <a href="/#failed-submissions">failed</a>, it will be &#39;0&rsquo;</td>
+<td>Will be &#39;1&rsquo; if the submission was a success. If the submission <a href="#failed-submissions">failed</a>, it will be &#39;0&rsquo;</td>
 </tr>
 <tr>
 <td>EntryId</td>
@@ -2083,7 +2083,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 <tr>
 <td>EntryLink</td>
-<td>If the submission was a success, this value will be the URL for an <a href="/#form-entries">Entries</a> request, filtered for this entry</td>
+<td>If the submission was a success, this value will be the URL for an <a href="#form-entries">Entries</a> request, filtered for this entry</td>
 </tr>
 <tr>
 <td>RedirectUrl</td>
@@ -2495,7 +2495,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <p><code class="prettyprint">GET http://{subdomain}.wufoo.com/api/v3/reports/{identifier}.{format}</code></p>
 
-<aside class="notice">You can find the report identifier in the report URL, or through a <a href='/#reports'>Reports</a> request</aside>
+<aside class="notice">You can find the report identifier in the report URL, or through a <a href='#reports'>Reports</a> request</aside>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -2701,7 +2701,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <p>This is essentially an equivalent of the data that would show up in a datagrid widget on the report, or in an exported copy of the report entry data</p>
 
-<aside class="notice">For more details on entry objects, see <a href='/#form-entries'>Form Entries</a></aside>
+<aside class="notice">For more details on entry objects, see <a href='#form-entries'>Form Entries</a></aside>
 
 <h2 id="report-entries-count">Report Entries Count</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries/count.json?pretty=true"</span>
@@ -3191,7 +3191,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 </tbody></table>
 
-<aside class="notice">Report fields are the field for the form the report is based on. For more, see <a href='/#form-fields'>Form Fields</a></aside>
+<aside class="notice">Report fields are the field for the form the report is based on. For more, see <a href='#form-fields'>Form Fields</a></aside>
 
 <h2 id="widgets">Widgets</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/widgets.json?pretty=true"</span>
