@@ -24,7 +24,7 @@ activate :livereload
 # This is needed for Github pages, since they're hosted on a subdomain
 # Github pages require relative links
 activate :relative_assets
-set :relative_links, true
+# set :relative_links, true
 
 # Build Configuration
 configure :build do
