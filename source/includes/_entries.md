@@ -207,7 +207,7 @@ pretty    | false   | If set to true, returns the result in a "pretty print" for
 pageStart | 0       | The entry that the request will start from
 pageSize  | 25      | The number of entries returned in the request (Maximum of 100)
 
-The various `Field##` properties correspond to the fields in the [Form Fields](/#form-fields)
+The various `Field##` properties correspond to the fields in the [Form Fields](#form-fields)
 
 <aside class="warning">Data in fields that are marked as "Admin Only" are not returned via the API. Data from "hidden" and encrypted fields will be shown</aside>
 
@@ -250,7 +250,7 @@ You can filter an Entries API request, similar to how the Wufoo [Entry Manager](
 Parameter   | Description
 ----------- | -----------
 Filter{##}  | {##} should just be a unique number to identify each filter (1, 2, 3, etc.)
-{ID}        | The API Field ID for the field you want to use. These values are the same as the "ID" property in a [Fields](/#form-fields) request
+{ID}        | The API Field ID for the field you want to use. These values are the same as the "ID" property in a [Fields](#form-fields) request
 {Operator}  | The comparison that will be used with the filter. See full list below.
 {Value}     | The value to match with your filter
 {Grouping}  | Allows you group your filters as 'AND' (all must match) or 'OR' (at least one must match)
@@ -302,7 +302,7 @@ Example:
 
 ### Paging
 
-As mentioned [above](/#form-entries), you can use the `pageStart` and `pageSize` parameters to change the number of entries returned in your request. For example:
+As mentioned [above](#form-entries), you can use the `pageStart` and `pageSize` parameters to change the number of entries returned in your request. For example:
 
 `pageStart=5&pageSize=10`
 
@@ -394,7 +394,7 @@ if($resultStatus['http_code'] == 200) {
 
 ### HTTP Request
 
-This request returns a count of the entries stored for a specific form. This can help with deciding on a [pageSize](/#paging) for your Entries requests, or determining the number of elements you have to display. This request can also be used with [filters](/filtering), in which case the count will be all entries matching the filter.
+This request returns a count of the entries stored for a specific form. This can help with deciding on a [pageSize](#paging) for your Entries requests, or determining the number of elements you have to display. This request can also be used with [filters](/filtering), in which case the count will be all entries matching the filter.
 
 `GET http://{subdomain}.wufoo.com/api/v3/forms/{identifier}/entries/count.{format}`
 
@@ -527,7 +527,7 @@ identifier| The title or hash of the form to retrieve
 
 ### POST Parameters
 
-To submit an entry to a form, you'll need to match the API ID values for each field in the form. You can find these values through a [Form Fields](/#form-fields) request, or through your form's [API Information](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Templating#api) page.
+To submit an entry to a form, you'll need to match the API ID values for each field in the form. You can find these values through a [Form Fields](#form-fields) request, or through your form's [API Information](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Templating#api) page.
 
 The POST request should contain the data for the new entry submission in key/value pairs. The key will be the API ID in the format of `Field##`, where `##` is the API ID for the given field. The value will be your desired entry data, which will be recorded as if a user had submitted that value on the form manually.
 
@@ -547,9 +547,9 @@ When you make the Entries POST, you'll receive a PostResponse object containing 
 
 Property    | Description
 ---------   | -----------
-Success     | Will be '1' if the submission was a success. If the submission [failed](/#failed-submissions), it will be '0'
+Success     | Will be '1' if the submission was a success. If the submission [failed](#failed-submissions), it will be '0'
 EntryId     | If the submission was a success, this value will be the EntryId assigned to this submission
-EntryLink   | If the submission was a success, this value will be the URL for an [Entries](/#form-entries) request, filtered for this entry
+EntryLink   | If the submission was a success, this value will be the URL for an [Entries](#form-entries) request, filtered for this entry
 RedirectUrl | If the form has a [Redirect](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Settings#confirmation) set up, that URL will be included in the response
 
 >Note this POST request is missing a value for Field105 (a required Text field) and has a text value submitted for Field106 (a Number field)
