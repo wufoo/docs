@@ -1664,7 +1664,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <p>EntryId - This value is the unique identifier for your entry.</p>
 
-<p>DateCreated - The date that this entry was submitted. The date/time will be recorded in PST/PDT (UTC -8/-7)</p>
+<p>DateCreated - The date that this entry was submitted. The date/time will be recorded in the timezone of the user making the request</p>
 
 <p>Created By - The person who created the entry. If submitted through a form, the value here will be public. If the submission originated in the Entry Manager this value will be the user name of the submitting user.</p>
 
@@ -1724,7 +1724,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 </tbody></table>
 
-<aside class="notice">We do not adjust your input fiter date/time, so all dates/times are interpreted as @todo Eastern Standard Time (UTC - 5)</aside>
+<aside class="notice">We do not adjust your input fiter date/time, so all dates/times are interpreted as PST/PDT (UTC -8/-7)</aside>
 
 <p>Here&rsquo;s an example:</p>
 
@@ -2061,6 +2061,8 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
     &quot;Field106&quot;: &quot;42&quot;
  }</code></p>
 
+<aside class="notice">To submit a date value, make sure to use the format YYYYMMDD</aside>
+
 <h3 id="response">Response</h3>
 
 <p>When you make the Entries POST, you&rsquo;ll receive a PostResponse object containing the following:</p>
@@ -2216,6 +2218,8 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <td>If the form has a <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Settings#confirmation">Redirect</a> set up, that URL will be included in the response</td>
 </tr>
 </tbody></table>
+
+<aside class="warning">If you get an error about invalid dates, the specified format `MM/DD/YYYY` is incorrect. The correct date format is YYYMMDD</aside>
 
 <h3 id="restrictions">Restrictions</h3>
 
@@ -3986,48 +3990,64 @@ the subdomain parameter is required. </p>
 <table><thead>
 <tr>
 <th>Error Code</th>
+<th>Message</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request</td>
+<td>You must provide both a email and password, and integration key to continue.</td>
+<td>Missing email, password, API Key or Integration key</td>
 </tr>
 <tr>
 <td>401</td>
 <td>Unauthorized &ndash; Your API key is wrong</td>
+<td></td>
 </tr>
 <tr>
 <td>403</td>
 <td>Forbidden</td>
+<td></td>
 </tr>
 <tr>
 <td>404</td>
 <td>Not Found</td>
+<td></td>
 </tr>
 <tr>
 <td>405</td>
 <td>Method Not Allowed</td>
+<td></td>
 </tr>
 <tr>
 <td>406</td>
 <td>Not Acceptable</td>
+<td></td>
 </tr>
 <tr>
 <td>409</td>
-<td></td>
+<td>Multiple accounts exist for this email address. Please specify a subdomain in a subsequent call.</td>
+<td>No subdomain included in Login request</td>
+</tr>
+<tr>
+<td>420</td>
+<td>Too many login attempts. You are only allowed 6 failed attempts. Account temporarily frozen.</td>
+<td>Too many failed Login requests</td>
 </tr>
 <tr>
 <td>429</td>
 <td>Too Many Requests</td>
+<td></td>
 </tr>
 <tr>
 <td>500</td>
 <td>Internal Server Error</td>
+<td></td>
 </tr>
 <tr>
 <td>503</td>
 <td>Service Unavailable</td>
+<td></td>
 </tr>
 </tbody></table>
 
