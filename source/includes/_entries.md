@@ -394,7 +394,7 @@ if($resultStatus['http_code'] == 200) {
 
 ### HTTP Request
 
-This request returns a count of the entries stored for a specific form. This can help with deciding on a [pageSize](#paging) for your Entries requests, or determining the number of elements you have to display. This request can also be used with [filters](/filtering), in which case the count will be all entries matching the filter.
+This request returns a count of the entries stored for a specific form. This can help with deciding on a [pageSize](#paging) for your Entries requests, or determining the number of elements you have to display. This request can also be used with [filters](#filtering), in which case the count will be all entries matching the filter.
 
 `GET http://{subdomain}.wufoo.com/api/v3/forms/{identifier}/entries/count.{format}`
 
