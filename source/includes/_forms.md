@@ -462,7 +462,7 @@ IsRequired - Whether or not the field has been marked as Required in the Field S
 
 ClassNames - Any values that were added to the CSS Keywords option in the Form Builder.
 
-ID - The API ID for that field. This is what you'll use for [submitting new entries](/#submit-entry), or using URL Modification and Templating
+ID - The API ID for that field. This is what you'll use for [submitting new entries](#submit-entry), or using URL Modification and Templating
 
 Label - If a field has a SubFields or Choices property (meaning there are multiple fields or options), each sub-field or choice will have its own label. This is the value stored for Dropdown, Multiple Choice, or Checkbox fields. For fields like Name and Address, these are the values of the different sub-fields 
 
@@ -846,7 +846,7 @@ Each choice also has a Score property, representing that choice's "value" relati
     }
 ```
 These are only included if you set the `system` query parameter.
-If you set `system` to any value (`system=true`, `system=false`, etc), the fields will be included, so if you don't want the System Fields, leave the `system` paramter out (Don't just set it to `false`). This parameter is also available in the [Entries API](/#entries-system)
+If you set `system` to any value (`system=true`, `system=false`, etc), the fields will be included, so if you don't want the System Fields, leave the `system` paramter out (Don't just set it to `false`). This parameter is also available in the [Entries API](#entries-system)
 
 <b>The System Fields are:</b>
 
@@ -988,7 +988,7 @@ entryId   | N/A     | If set to a number, will only return comments for the spec
 pageStart | 0       | The comment that the request will start from
 pageSize  | 25      | The number of comments returned in the request (Maximum of 100)
 
-<aside class="notice">See the Entries API for more details on [paging](/#paging) </aside>
+<aside class="notice">See the Entries API for more details on [paging](#paging) </aside>
 
 <b>Here are the properties of each Comment:</b>
 

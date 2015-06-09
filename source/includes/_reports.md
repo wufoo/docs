@@ -257,7 +257,7 @@ This request returns a specific report. To identify the desired report, you can 
 
 `GET http://{subdomain}.wufoo.com/api/v3/reports/{identifier}.{format}`
 
-<aside class="notice">You can find the report identifier in the report URL, or through a <a href='/#reports'>Reports</a> request</aside>
+<aside class="notice">You can find the report identifier in the report URL, or through a <a href='#reports'>Reports</a> request</aside>
 
 ### URL Parameters
 
@@ -420,7 +420,7 @@ pretty    | false   | If set to true, returns the result in a "pretty print" for
 
 This is essentially an equivalent of the data that would show up in a datagrid widget on the report, or in an exported copy of the report entry data
 
-<aside class="notice">For more details on entry objects, see <a href='/#form-entries'>Form Entries</a></aside>
+<aside class="notice">For more details on entry objects, see <a href='#form-entries'>Form Entries</a></aside>
 
 ## Report Entries Count
 
@@ -874,7 +874,7 @@ Parameter | Default | Description
 system    | false   | If set to true, includes additional metadata fields
 pretty    | false   | If set to true, returns the result in a "pretty print" format
 
-<aside class="notice">Report fields are the field for the form the report is based on. For more, see <a href='/#form-fields'>Form Fields</a></aside>
+<aside class="notice">Report fields are the field for the form the report is based on. For more, see <a href='#form-fields'>Form Fields</a></aside>
 
 ## Widgets
 
