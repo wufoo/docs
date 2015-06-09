@@ -291,7 +291,7 @@ Sorting can also be applied using additional query parameters in this format:
 
 Parameter     | Default | Description
 ------------- | ------- | -----------
-sort          | N/A     | The API Field ID for the field you want to use. These values are the same as the "ID" property in a [Fields](/#form-fields) request
+sort          | N/A     | The API Field ID for the field you want to use. These values are the same as the "ID" property in a [Fields](#form-fields) request
 sortDirection | ASC     | The order to sort returned entries: ASC (lowest to highest) or DESC (highest to lowest)
 
 The `sortDirection` parameter will only be applied if it is also used with a `sort` parameter. In other words, the `sortDirection` can only be applied to the sorting used with the `sort` value, not by itself.
