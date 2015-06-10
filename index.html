@@ -3985,7 +3985,7 @@ the subdomain parameter is required. </p>
 
           <h1 id="http-status-codes">HTTP Status Codes</h1>
 
-<p>The Wufoo API uses the following status codes:</p>
+<p>Here are the most frequently encountered error status codes, and the common causes:</p>
 
 <table><thead>
 <tr>
@@ -3995,59 +3995,59 @@ the subdomain parameter is required. </p>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>You must provide both a email and password, and integration key to continue.</td>
-<td>Missing email, password, API Key or Integration key</td>
+<td><code class="prettyprint">400</code></td>
+<td><code class="prettyprint">Your request has been rejected</code></td>
+<td>Usually caused by a request made without HTTPS</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-<td></td>
+<td><code class="prettyprint">400</code></td>
+<td><code class="prettyprint">You must provide both a email and password, and integration key to continue</code></td>
+<td>Triggered by a missing email, password, API Key or Integration key</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden</td>
-<td></td>
+<td><code class="prettyprint">401</code></td>
+<td>Various</td>
+<td>Your authentication was not correct, usually due to an invalid API Key, email, etc.</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found</td>
-<td></td>
+<td><code class="prettyprint">403</code></td>
+<td><code class="prettyprint">You have reached the maximum number of integrations allowed for this form</code></td>
+<td>Forms can only have a maximum of 10 integrations (Webhook, MailChimp, etc.)</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed</td>
-<td></td>
+<td><code class="prettyprint">403</code></td>
+<td><code class="prettyprint">You are not permitted to {action} this {resource} ask your administrator for rights to this</code></td>
+<td>The user tied to your API Key doesn&rsquo;t have view/edit permissions for the form/report you&rsquo;re trying to access</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable</td>
-<td></td>
+<td><code class="prettyprint">404</code></td>
+<td><code class="prettyprint">Invalid identifier</code></td>
+<td>Request made for an invalid form/report identifier</td>
 </tr>
 <tr>
-<td>409</td>
-<td>Multiple accounts exist for this email address. Please specify a subdomain in a subsequent call.</td>
+<td><code class="prettyprint">404</code></td>
+<td><code class="prettyprint">Not Found</code></td>
+<td>Normally caused by a malformed request URL</td>
+</tr>
+<tr>
+<td><code class="prettyprint">409</code></td>
+<td><code class="prettyprint">Multiple accounts exist for this email address. Please specify a subdomain in a subsequent call</code></td>
 <td>No subdomain included in Login request</td>
 </tr>
 <tr>
-<td>420</td>
-<td>Too many login attempts. You are only allowed 6 failed attempts. Account temporarily frozen.</td>
+<td><code class="prettyprint">420</code></td>
+<td><code class="prettyprint">Too many login attempts. You are only allowed 6 failed attempts. Account temporarily frozen</code></td>
 <td>Too many failed Login requests</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests</td>
-<td></td>
+<td><code class="prettyprint">421</code></td>
+<td><code class="prettyprint">You have exceeded your daily API usage</code></td>
+<td>More than 5000 requests have been made using this API Key in the last 24 hours</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error</td>
-<td></td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable</td>
-<td></td>
+<td><code class="prettyprint">500</code></td>
+<td>Various</td>
+<td>Server error. Send our support team the request you used, and we can take a closer look</td>
 </tr>
 </tbody></table>
 
