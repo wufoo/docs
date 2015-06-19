@@ -28,9 +28,9 @@ search: true
 
 Welcome to the Wufoo API! You can use our API to access your forms, entries, reports, and more. You can also submit new entries, and even add or remove Webhooks. 
 
-Our v3 API is RESTful, which means you can make requests using any HTTP service. To help you get started with building your own integrations, there are some basic code examples in the area to the right, and you can switch the programming language of the examples with the tabs in the top right. All examples use the 'fishbowl' example subdomain. When making your own requests, be sure to use your own account name/subdomain, and your own API Key.
-
 ## Structure
+
+>Our v3 API is RESTful, which means you can make requests using any HTTP service/client/library. To help you get started with building your own integrations, we'll include basic code samples in this area. You can switch the language of the examples with the tabs at the top. 
 
 Each resource page will go into more detail, but here's a quick overview of how the Wufoo API is structured
 
@@ -61,6 +61,8 @@ A complete request will look like this: `https://fishbowl.wufoo.com/api/v3/forms
 
 ## API Key
 
+>All examples use the demo 'fishbowl' subdomain. When making your own requests, be sure to use your own account name/subdomain, and your own API Key.
+
 To use any of the API functions, you'll need to use your Wufoo API Key. If you haven't already, you can follow these steps to locate your key:
 
 - Log in to your Wufoo account
@@ -88,7 +90,7 @@ curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/for
 ```
 
 ```php
-<? php
+<?php
 $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms.json');
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_USERPWD, 'AOI6-LFKL-VM1Q-IEX9:footastic');
@@ -105,7 +107,6 @@ if($resultStatus['http_code'] == 200) {
 } else {
     echo 'Call Failed '.print_r($resultStatus);
 }
-?>
 ```
 
 ```python

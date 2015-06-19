@@ -66,7 +66,6 @@ if($resultStatus['http_code'] == 200) {
 } else {
     echo 'Call Failed '.print_r($resultStatus);
 }
-?>
 ```
 
 > The above request produces output in this format:
@@ -261,7 +260,6 @@ if($resultStatus['http_code'] == 200) {
 } else {
     echo 'Call Failed '.print_r($resultStatus);
 }
-?>
 ```
 
 > The above request produces output in this format:
@@ -383,7 +381,6 @@ if($resultStatus['http_code'] == 200) {
 } else {
     echo 'Call Failed '.print_r($resultStatus);
 }
-?>
 ```
 
 > The above request produces output in this format:
@@ -932,7 +929,6 @@ if($resultStatus['http_code'] == 200) {
 } else {
     echo 'Call Failed '.print_r($resultStatus);
 }
-?>
 ```
 
 > The above request produces output in this format:
@@ -1068,7 +1064,6 @@ if($resultStatus['http_code'] == 200) {
 } else {
     echo 'Call Failed '.print_r($resultStatus);
 }
-?>
 ```
 
 > The above request produces output in this format:

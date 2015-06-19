@@ -91,7 +91,6 @@ if($resultStatus['http_code'] == 200 || $resultStatus['http_code'] == 201) {
 } else {
     echo 'Call Failed '.print_r($resultStatus);
 }
-?>
 ```
 
 > The above request will recieve a response in this format:
@@ -205,7 +204,6 @@ if($resultStatus['http_code'] == 200 || $resultStatus['http_code'] == 201) {
 } else {
     echo 'Call Failed '.print_r($resultStatus);
 }
-?>
 ```
 
 > The above request produces output in this format:
