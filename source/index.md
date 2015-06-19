@@ -1,5 +1,5 @@
 ---
-title: Wufoo API
+title: Wufoo API v3
 
 language_tabs:
   - shell: cURL
@@ -9,7 +9,7 @@ language_tabs:
 
 toc_footers:
   - <a href='http://www.wufoo.com'>Wufoo</a>
-  - <a href='http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Wufoo-REST-API-V3'>See our old docs</a>
+  - <a href='http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Wufoo-REST-API-V3'>Our other API docs</a>
   - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 
 includes:
@@ -30,7 +30,7 @@ Welcome to the Wufoo API! You can use our API to access your forms, entries, rep
 
 ## Structure
 
->Our v3 API is RESTful, which means you can make requests using any HTTP service/client/library. To help you get started with building your own integrations, we'll include basic code samples in this area. You can switch the language of the examples with the tabs at the top. 
+>Our API can be used by making requests with any HTTP service/client/library. To help you get started with building your own integrations, we'll include basic code samples in this area. You can switch the language of the examples with the tabs at the top. 
 
 Each resource page will go into more detail, but here's a quick overview of how the Wufoo API is structured
 
@@ -58,6 +58,9 @@ Forms and Reports resources have a  "hashed" and a "title" identifier. Widgets, 
 Finally, each request will end with a format extension. Our API can return responses in either `.json` or `.xml` format.
 
 A complete request will look like this: `https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json`
+
+Optional query parameters can also be added to the end of the request like so: 
+`https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json?pretty=true&includeTodayCount=true`
 
 ## API Key
 
