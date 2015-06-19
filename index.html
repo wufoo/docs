@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Wufoo API</title>
+    <title>Wufoo API v3</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -41,7 +41,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='http://www.wufoo.com'>Wufoo</a></li>
-            <li><a href='http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Wufoo-REST-API-V3'>See our old docs</a></li>
+            <li><a href='http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Wufoo-REST-API-V3'>Our other API docs</a></li>
             <li><a href='http://github.com/tripit/slate'>Powered by Slate</a></li>
         </ul>
     </div>
@@ -52,9 +52,11 @@
 
 <p>Welcome to the Wufoo API! You can use our API to access your forms, entries, reports, and more. You can also submit new entries, and even add or remove Webhooks. </p>
 
-<p>Our v3 API is RESTful, which means you can make requests using any HTTP service. To help you get started with building your own integrations, there are some basic code examples in the area to the right, and you can switch the programming language of the examples with the tabs in the top right. All examples use the &lsquo;fishbowl&rsquo; example subdomain. When making your own requests, be sure to use your own account name/subdomain, and your own API Key.</p>
-
 <h2 id="structure">Structure</h2>
+
+<blockquote>
+<p>Our API can be used by making requests with any HTTP service/client/library. To help you get started with building your own integrations, we&rsquo;ll include basic code samples in this area. You can switch the language of the examples with the tabs at the top. </p>
+</blockquote>
 
 <p>Each resource page will go into more detail, but here&rsquo;s a quick overview of how the Wufoo API is structured</p>
 
@@ -113,7 +115,14 @@ or the form title: <code class="prettyprint">/forms/wufoo-api-example/</code></p
 
 <p>A complete request will look like this: <code class="prettyprint">https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json</code></p>
 
+<p>Optional query parameters can also be added to the end of the request like so: 
+<code class="prettyprint">https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json?pretty=true&amp;includeTodayCount=true</code></p>
+
 <h2 id="api-key">API Key</h2>
+
+<blockquote>
+<p>All examples use the demo &lsquo;fishbowl&rsquo; subdomain. When making your own requests, be sure to use your own account name/subdomain, and your own API Key.</p>
+</blockquote>
 
 <p>To use any of the API functions, you&rsquo;ll need to use your Wufoo API Key. If you haven&rsquo;t already, you can follow these steps to locate your key:</p>
 
@@ -142,7 +151,7 @@ Each sub-user on your account has their own API Key. This allows you to still en
 <pre class="highlight shell"><code><span class="c"># With cURL, you can just pass the "username" and "password" with each request</span>
 curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms.json"</span>
 </code></pre>
-<pre class="highlight php"><code><span class="cp">&lt;?</span> <span class="nx">php</span>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">(</span><span class="s1">'https://fishbowl.wufoo.com/api/v3/forms.json'</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="nx">CURLOPT_USERPWD</span><span class="p">,</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9:footastic'</span><span class="p">);</span>
@@ -159,7 +168,6 @@ curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footasti
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 <pre class="highlight python"><code><span class="c"># Using urllib2 we'll need an HTTPPasswordMgr and HTTPBasicAuthHandler</span>
 <span class="kn">import</span> <span class="nn">urllib2</span>
@@ -285,7 +293,6 @@ You&rsquo;ll need to replace 'username&rsquo; with your API key, and password wi
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -497,7 +504,6 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -639,7 +645,6 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1201,7 +1206,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1365,7 +1369,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1480,7 +1483,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -1872,7 +1874,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2004,7 +2005,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2168,7 +2168,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2291,7 +2290,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2464,7 +2462,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2595,7 +2592,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2761,7 +2757,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -2874,7 +2869,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -3251,7 +3245,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -3415,7 +3408,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -3637,7 +3629,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -3775,7 +3766,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
@@ -3905,7 +3895,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="k">echo</span> <span class="s1">'Call Failed '</span><span class="o">.</span><span class="nb">print_r</span><span class="p">(</span><span class="nv">$resultStatus</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="cp">?&gt;</span>
 </code></pre>
 
 <blockquote>
