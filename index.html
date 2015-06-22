@@ -3825,7 +3825,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s">'https://wufoo.com/api/v3/'</span>
 <span class="n">username</span> <span class="o">=</span> <span class="s">'AOI6-LFKL-VM1Q-IEX9'</span>
 <span class="n">password</span> <span class="o">=</span> <span class="s">'footastic'</span>
 
@@ -3853,11 +3853,11 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <span class="nb">require</span> <span class="s2">"uri"</span>
 <span class="nb">require</span> <span class="s2">"json"</span>
 
-<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://fishbowl.wufoo.com/api/v3/'</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">'https://wufoo.com/api/v3/'</span>
 <span class="n">username</span> <span class="o">=</span> <span class="s1">'AOI6-LFKL-VM1Q-IEX9'</span>
 <span class="n">password</span> <span class="o">=</span> <span class="s1">'footastic'</span>
 
-<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"forms/s1afea8b1vk0jf7/entries.json"</span><span class="p">)</span>
+<span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s2">"login.json"</span><span class="p">)</span>
 
 <span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Post</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">uri</span><span class="p">.</span><span class="nf">request_uri</span><span class="p">)</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">basic_auth</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
