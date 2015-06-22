@@ -13,7 +13,7 @@ import urllib
 import urllib2
 import json
 
-base_url = 'https://fishbowl.wufoo.com/api/v3/'
+base_url = 'https://wufoo.com/api/v3/'
 username = 'AOI6-LFKL-VM1Q-IEX9'
 password = 'footastic'
 
@@ -43,11 +43,11 @@ require "net/http"
 require "uri"
 require "json"
 
-base_url = 'https://fishbowl.wufoo.com/api/v3/'
+base_url = 'https://wufoo.com/api/v3/'
 username = 'AOI6-LFKL-VM1Q-IEX9'
 password = 'footastic'
 
-uri = URI.parse(base_url+"forms/s1afea8b1vk0jf7/entries.json")
+uri = URI.parse(base_url+"login.json")
 
 request = Net::HTTP::Post.new(uri.request_uri)
 request.basic_auth(username, password)
