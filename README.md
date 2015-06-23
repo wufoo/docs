@@ -1,7 +1,7 @@
 Wufoo API Docs
 ========
 
-Here is the source for the new Wufoo API documentation. It's built using [Slate](https://github.com/tripit/slate/) a great tool for generating static HTML documentation from Markdown files.
+Here is the source for the new Wufoo API documentation. It's built using [Slate](https://github.com/tripit/slate/), a great tool for generating static HTML documentation from Markdown files.
 
 Check out the [live view](https://wufoo.github.io/docs)
 
