@@ -26,17 +26,17 @@ search: true
 
 # Introduction
 
-Welcome to the Wufoo API! You can use our API to access your forms, entries, reports, and more. You can also submit new entries, and even add or remove Webhooks. 
+Welcome to the Wufoo API! You can use our API to access your forms, entries, reports, and more. You can also submit new entries, and even add or remove Webhooks.
 
 ## Structure
 
->Our API can be used by making requests with any HTTP service/client/library. To help you get started with building your own integrations, we'll include basic code samples in this area. You can switch the language of the examples with the tabs at the top. 
+>Our API can be used by making requests with any HTTP service/client/library. To help you get started with building your own integrations, we'll include basic code samples in this area. You can switch the language of the examples with the tabs at the top.
 
 Each resource page will go into more detail, but here's a quick overview of how the Wufoo API is structured
 
 When making a request, you'll use your specific account subdomain. For example: `https://fishbowl.wufoo.com`
 
-All of our API resources then start with: `/api/v3` 
+All of our API resources then start with: `/api/v3`
 
 To help keep things organized, we've broken up our API into logical sections based on the different aspects of Wufoo. These are:  
 
@@ -49,7 +49,7 @@ Users    | `/users`    | GET
 Webhooks | `/webhooks` | PUT or DELETE
 Login    | `/login`    | POST
 
-Some requests require you to identify the specific resource you're trying to access. The most commonly used example would be a form identifier. To uniquely identify a specific form, you can use either 
+Some requests require you to identify the specific resource you're trying to access. The most commonly used example would be a form identifier. To uniquely identify a specific form, you can use either
 the "hashed" URL: `/forms/s1afea8b1vk0jf7/`
 or the form title: `/forms/wufoo-api-example/`
 
@@ -59,7 +59,7 @@ Finally, each request will end with a format extension. Our API can return respo
 
 A complete request will look like this: `https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json`
 
-Optional query parameters can also be added to the end of the request like so: 
+Optional query parameters can also be added to the end of the request like so:
 `https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json?pretty=true&includeTodayCount=true`
 
 ## API Key
@@ -69,8 +69,8 @@ Optional query parameters can also be added to the end of the request like so:
 To use any of the API functions, you'll need to use your Wufoo API Key. If you haven't already, you can follow these steps to locate your key:
 
 - Log in to your Wufoo account
-- Click the Share button beneath any of your forms 
-- In the Share menu, click the API Information button to access your API credentials. 
+- Click the Share button beneath any of your forms
+- In the Share menu, click the API Information button to access your API credentials.
 - On that page there is a 16 digit code, which is your unique API key.
 
 <aside class="notice">
@@ -98,8 +98,8 @@ $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms.json');
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_USERPWD, 'AOI6-LFKL-VM1Q-IEX9:footastic');
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);                          
-curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);                           
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($curl, CURLOPT_USERAGENT, 'Wufoo Sample Code');
 
 $response = curl_exec($curl);
@@ -163,7 +163,7 @@ puts JSON.pretty_generate(JSON[response.body])
 
 > Make sure to replace `AOI6-LFKL-VM1Q-IEX9` with your API key and `fishbowl` with your own subdomain. The second value `footastic` can be set to anything (we don't check the content).
 
-Wufoo uses [Basic Auth](http://www.ietf.org/rfc/rfc2617.txt) with API Keys to allow access to the API. 
+Wufoo uses [Basic Auth](http://www.ietf.org/rfc/rfc2617.txt) with API Keys to allow access to the API.
 
 Wufoo expects the API key to be included as the 'username' and any value as the 'password' portion of Basic Auth. If the service you're using doesn't have a built in way to authenticate using Basic Auth, you can set the Authorization header to a base64 encoded string:
 
