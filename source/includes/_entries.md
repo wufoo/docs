@@ -3,7 +3,7 @@
 ## Form Entries
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/wufoo-api-example/entries.json?pretty=true&sort=EntryId&sortDirection=DESC"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/wufoo-api-example/entries.json?sort=EntryId&sortDirection=DESC"
 ```
 
 ```python
@@ -317,7 +317,7 @@ pageSize  | 25      | The number of entries returned in the request (Maximum of 
 ## Form Entries Count
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries/count.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries/count.json"
 ```
 
 ```python

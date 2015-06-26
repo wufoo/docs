@@ -3,7 +3,7 @@
 ## Users
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/users.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/users.json"
 ```
 
 ```python

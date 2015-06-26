@@ -3,7 +3,7 @@
 ## All Reports
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports.json"
 ```
 
 ```python
@@ -162,7 +162,7 @@ LinkWidgets - Link to the Widgets API for the widgets that make up this report
 ## Report
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7.json"
 ```
 
 ```python
@@ -276,7 +276,7 @@ The Report properties are the same as in the All Reporst request. The only diffe
 ## Report Entries
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries.json"
 ```
 
 ```python
@@ -422,7 +422,7 @@ This is essentially an equivalent of the data that would show up in a datagrid w
 ## Report Entries Count
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries/count.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries/count.json"
 ```
 
 ```python
@@ -518,7 +518,7 @@ pretty    | false   | If set to true, returns the result in a "pretty print" for
 ## Report Fields
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/fields.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/fields.json"
 ```
 
 ```python
@@ -874,7 +874,7 @@ pretty    | false   | If set to true, returns the result in a "pretty print" for
 ## Widgets
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/widgets.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/widgets.json"
 ```
 
 ```python

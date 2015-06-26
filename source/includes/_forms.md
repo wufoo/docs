@@ -3,7 +3,7 @@
 ## All Forms
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms.json"
 ```
 
 ```python
@@ -197,7 +197,7 @@ LinkEntriesCount - Link to the Entries API for a count of the entries stored by 
 ## Form
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7.json"
 ```
 
 ```python
@@ -318,7 +318,7 @@ The Form properties are the same as in the All Forms request. The only differenc
 ## Form Fields
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/fields.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/fields.json"
 ```
 
 ```python
@@ -866,7 +866,7 @@ MerchantType - The name of the payment processor used. This is determined by whi
 ## Form Comments
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/comments.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/comments.json"
 ```
 
 ```python
@@ -1001,7 +1001,7 @@ Text - The comment itself.
 ## Comments Count
 
 ```shell
-curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/comments/count.json?pretty=true"
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/comments/count.json"
 ```
 
 ```python
