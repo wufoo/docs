@@ -60,7 +60,7 @@ Other examples of Slate documentation
 Attribution
 --------------------
 
-Slate makes of several other projects, such as:
+Slate makes use of several other projects, such as:
 
 - [Middleman](https://github.com/middleman/middleman)
 - [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
