@@ -47,6 +47,23 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 puts JSON.pretty_generate(JSON[response.body])
 ```
 
+```javascript
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json?sort=EntryId&sortDirection=DESC",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
+
+```
+
 ```php
 <?php
 $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json?sort=EntryId&sortDirection=DESC');
@@ -361,6 +378,23 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 puts JSON.pretty_generate(JSON[response.body])
 ```
 
+```javascript
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries/count.json",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
+
+```
+
 ```php
 <?php
 $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries/count.json');
@@ -471,6 +505,28 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 }
 
 puts JSON.pretty_generate(JSON[response.body])
+```
+
+```javascript
+var request = require("request");
+
+request({
+    uri: "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json",
+    method: "POST",
+    auth: {
+        'username': 'AOI6-LFKL-VM1Q-IEX9',
+        'password': 'footastic',
+        'sendImmediately': false
+    },
+    form: {
+        'Field1' : 'Wufoo', 
+        'Field2' : 'Test', 
+        'Field105' : 'API-Test',
+        'Field106' : '42'
+    }
+}, function(error, response, body) {
+  console.log(body);
+});
 ```
 
 ```php
@@ -608,6 +664,27 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 }
 
 puts JSON.pretty_generate(JSON[response.body])
+```
+
+```javascript
+var request = require("request");
+
+request({
+    uri: "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json",
+    method: "POST",
+    auth: {
+        'username': 'AOI6-LFKL-VM1Q-IEX9',
+        'password': 'footastic',
+        'sendImmediately': false
+    },
+    form: {
+        'Field1' : 'Wufoo', 
+        'Field2' : 'Test',
+        'Field106' : 'Fail'
+}
+}, function(error, response, body) {
+  console.log(body);
+});
 ```
 
 ```php

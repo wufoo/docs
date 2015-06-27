@@ -68,6 +68,27 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 puts JSON.pretty_generate(JSON[response.body])
 ```
 
+```javascript
+var request = require("request");
+
+request({
+    uri: "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webhooks.json",
+    method: "PUT",
+    auth: {
+        'username': 'AOI6-LFKL-VM1Q-IEX9',
+        'password': 'footastic',
+        'sendImmediately': false
+    },
+    form: {
+        'url' : 'https://www.wufoo.com', 
+        'handshakeKey' : 'secret123',
+        'metadata' : 'true'
+    }
+}, function(error, response, body) {
+  console.log(body);
+});
+```
+
 ```php
 <?php
 $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webhooks.json');
@@ -181,6 +202,22 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 }
 
 puts JSON.pretty_generate(JSON[response.body])
+```
+
+```javascript
+var request = require("request");
+
+request({
+    uri: "https://fishbowl.wufoo.com/api/v3/forms/wb2xgwf0gskbda/webhooks/e1irzkhi0y6prja.json",
+    method: "DELETE",
+    auth: {
+        'username': 'AOI6-LFKL-VM1Q-IEX9',
+        'password': 'footastic',
+        'sendImmediately': false
+    }
+}, function(error, response, body) {
+  console.log(body);
+});
 ```
 
 ```php

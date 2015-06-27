@@ -6,6 +6,7 @@ language_tabs:
   - php: PHP
   - python: Python
   - ruby: Ruby
+  - javascript: Node.js
 
 toc_footers:
   - <a href='http://www.wufoo.com'>Wufoo</a>
@@ -159,6 +160,23 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 
 # Print the output in a "pretty" json format
 puts JSON.pretty_generate(JSON[response.body])
+```
+
+```javascript
+//With Node, we'll use the `request` library. If you don't have it already, you can get it with `npm install request`
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/forms.json",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
 ```
 
 > Make sure to replace `AOI6-LFKL-VM1Q-IEX9` with your API key and `fishbowl` with your own subdomain. The second value `footastic` can be set to anything (we don't check the content).

@@ -47,6 +47,23 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 puts JSON.pretty_generate(JSON[response.body])
 ```
 
+```javascript
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/reports.json",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
+
+```
+
 ```php
 <?php
 $curl = curl_init('https://fishbowl.wufoo.com/api/v3/reports.json');
@@ -206,6 +223,22 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 puts JSON.pretty_generate(JSON[response.body])
 ```
 
+```javascript
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7.json",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
+```
+
 ```php
 <?php
 $curl = curl_init('https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7.json');
@@ -318,6 +351,22 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 }
 
 puts JSON.pretty_generate(JSON[response.body])
+```
+
+```javascript
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries.json",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
 ```
 
 ```php
@@ -466,6 +515,22 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 puts JSON.pretty_generate(JSON[response.body])
 ```
 
+```javascript
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries/count.json",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
+```
+
 ```php
 <?php
 $curl = curl_init('https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/entries/count.json');
@@ -560,6 +625,22 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 }
 
 puts JSON.pretty_generate(JSON[response.body])
+```
+
+```javascript
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/fields.json",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
 ```
 
 ```php
@@ -916,6 +997,22 @@ response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'ht
 }
 
 puts JSON.pretty_generate(JSON[response.body])
+```
+
+```javascript
+var request = require("request");
+
+request({
+  uri: "https://fishbowl.wufoo.com/api/v3/reports/qa4d98l1ib9or7/widgets.json",
+  method: "GET",
+  auth: {
+    'username': 'AOI6-LFKL-VM1Q-IEX9',
+    'password': 'footastic',
+    'sendImmediately': false
+  }
+}, function(error, response, body) {
+  console.log(body);
+});
 ```
 
 ```php
