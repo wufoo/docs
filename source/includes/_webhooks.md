@@ -95,7 +95,7 @@ $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webho
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_USERPWD, 'AOI6-LFKL-VM1Q-IEX9:footastic');
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);                          
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);                          
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);                           
 curl_setopt($curl, CURLOPT_USERAGENT, 'Wufoo Sample Code');
 
@@ -226,7 +226,7 @@ $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/webho
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_USERPWD, 'AOI6-LFKL-VM1Q-IEX9:footastic');
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);                          
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);                          
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);                           
 curl_setopt($curl, CURLOPT_USERAGENT, 'Wufoo Sample Code');
 

@@ -70,7 +70,7 @@ $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entri
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_USERPWD, 'AOI6-LFKL-VM1Q-IEX9:footastic');
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);                          
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);                          
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);                           
 curl_setopt($curl, CURLOPT_USERAGENT, 'Wufoo Sample Code');
 
@@ -401,7 +401,7 @@ $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entri
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_USERPWD, 'AOI6-LFKL-VM1Q-IEX9:footastic');
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);                          
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);                          
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);                           
 curl_setopt($curl, CURLOPT_USERAGENT, 'Wufoo Sample Code');
 
@@ -535,7 +535,7 @@ $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entri
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_USERPWD, 'AOI6-LFKL-VM1Q-IEX9:footastic');
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);                          
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);                          
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);                           
 curl_setopt($curl, CURLOPT_USERAGENT, 'Wufoo Sample Code');
 
@@ -693,7 +693,7 @@ $curl = curl_init('https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entri
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLOPT_USERPWD, 'AOI6-LFKL-VM1Q-IEX9:footastic');
 curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);                          
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);                          
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);                           
 curl_setopt($curl, CURLOPT_USERAGENT, 'Wufoo Sample Code');
 
@@ -742,7 +742,7 @@ ErrorText   | This is some general text related to the error. Equivalent to what
 FieldErrors | This will be an array of ID and ErrorText pairs for each affected field. These would be any error displayed on the field itself
 RedirectUrl | If the form has a [Redirect](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Settings#confirmation) set up, that URL will be included in the response
 
-<aside class="warning">If you get an error about invalid dates, the specified format `MM/DD/YYYY` is incorrect. The correct date format is YYYMMDD</aside>
+<aside class="warning">If you get an error about invalid dates, the specified format `MM/DD/YYYY` is incorrect. The correct date format is YYYYMMDD</aside>
 
 ### Restrictions
 
