@@ -6,7 +6,7 @@ This guide shows how to get form code that will let you build a tool that lets u
 
 > A Simple Example
 
-```javascript
+```html
 <html>
 <body>
     <div id="popup"></div>
@@ -51,7 +51,7 @@ First, let’s take a look at how the markup has been set up. The example page (
 
  > A More Robust Example
 
-```JavaScript
+```html
 <!DOCTYPE html>
 <html>
 
@@ -154,7 +154,7 @@ The example contains three script includes. Let’s discuss what each does.
 
 >Script Tags
 
-```Javascript
+```html
 FIG. 4 - The Wufoo Form Embed Kit
 <script src="//wufoo.com/scripts/iframe/formEmbedKit.js[?debug=true]"></script>
 
@@ -183,7 +183,7 @@ We check for a click on the popup. When this happens (the user is done interacti
 
 >The Lightbox Effect
 
-```Javascript
+```html
 //Fig 8: Event listeners, intended to build up and tear down the library.
     $('insert-wufoo-form').observe('click', function() {
         $('popup').setStyle({display:'block'});
@@ -212,7 +212,7 @@ To make this page operational, we must react to the callback. Here’s how that 
 
 >User Defined Callback
 
-```Javascript
+```html
 //FIG. 9: define a callback, with the required parameters
 function userDefinedCallback(message) {
     //FIG. 10 Close lightbox
@@ -236,7 +236,7 @@ When you set up the User Defined Callback, you provided a message parameter. Whe
 
 >Return Values
 
-```Javascript
+```json
 {
     "setup":"<script type="text\/javascript">var host = (("https:" == document.location.protocol) ? "https:\/\/secure." : "http:\/\/");document.write(unescape("%3Cscript src='" + host + "wufoo.com\/scripts\/embed\/iframe.js' type='text\/javascript'%3E%3C\/script%3E"));<\/script>",
     "display":"<script type="text\/javascript">\nvar z7x4a9 = new WufooForm();\nz7x4a9.initialize({\n'userName':'wufooapi', \n'formHash':'z7x4a9', \n'autoResize':true,\n'height':'627',\n'ssl':true});\nz7x4a9.display();\n<\/script>"
@@ -247,7 +247,7 @@ This is simply a JSON object which contains two properties, each containing a `<
 
  * setup - this contains a utility script required to make Wufoo forms appear.
 
- * display - this is final product: a <script> tag which will draw a Wufoo form on your page. We added this script to the page in Fig 12. Based on your user’s account level, the ssl property will be automatically set to true or false.
+ * display - this is final product: a `<script>` tag which will draw a Wufoo form on your page. We added this script to the page in Fig 12. Based on your user’s account level, the ssl property will be automatically set to true or false.
 
 If you don’t plan on previewing the iFrame for the user, you may concatenate the setup and display and save them for eventual embedding on the user’s page. However, if you’re previewing the form like we do in this example, the setup node must not be included on your page. This is because the setup node has already been written as a script include in Fig 7.
 
