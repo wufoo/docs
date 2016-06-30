@@ -133,7 +133,7 @@ if($resultStatus['http_code'] == 200) {
 }
 ```
 
-This request returns details on all the reports you have permission to access. 
+This request returns details on all the reports you have permission to access.
 
 ### HTTP Request
 
@@ -154,27 +154,19 @@ pretty             | false   | If set to true, returns the result in a "pretty p
 
 Each Report will be displayed as a separate object made up of these properties:
 
-Name - The title of the report specified in the Report Builder
-
-Description - The description of the report as specified in the Report Builder
-
-Url - This is the "easy to remember" URL used for the report. Since it changes when the report title is changed, we recommend using the "hashed" URL instead when you need a permanent link. Can be used as a report identifier in other requests
-
-IsPublic - Indicates whether or not the "Public" option is enabled, allowing anyone with the link to access the report. Possible values are: 1 = true, 0 = false
-
-DateCreated - A timestamp of when the report was created. For a duplicated report, this will be the DateCreated for the original report
-
-DateUpdated - A timestamp of when the report was lasted edited in the Wufoo Report Builder
-
-Hash - A permanent, "hashed" value unique to this report on this user’s account. Can be used as a report identifier in other requests
-
-LinkFields - Link to the Report Fields API for a list of this report's fields
-
-LinkEntries - Link to the Report Entries API for a list of entries stored by this report
-
-LinkEntriesCount - Link to the Report Entries API for a count of the entries stored by this report
-
-LinkWidgets - Link to the Widgets API for the widgets that make up this report
+Property | Description
+|--------|--------|
+Name | The title of the report specified in the Report Builder
+Description | The description of the report as specified in the Report Builder
+Url | This is the "easy to remember" URL used for the report. Since it changes when the report title is changed, we recommend using the "hashed" URL instead when you need a permanent link. Can be used as a report identifier in other requests
+IsPublic | Indicates whether or not the "Public" option is enabled, allowing anyone with the link to access the report. Possible values are: 1 = true, 0 = false
+DateCreated | A timestamp of when the report was created. For a duplicated report, this will be the DateCreated for the original report
+DateUpdated | A timestamp of when the report was lasted edited in the Wufoo Report Builder
+Hash | A permanent, "hashed" value unique to this report on this user’s account. Can be used as a report identifier in other requests
+LinkFields | Link to the Report Fields API for a list of this report's fields
+LinkEntries | Link to the Report Entries API for a list of entries stored by this report
+LinkEntriesCount | Link to the Report Entries API for a count of the entries stored by this report
+LinkWidgets | Link to the Widgets API for the widgets that make up this report
 
 ## Report
 
@@ -282,7 +274,7 @@ if($resultStatus['http_code'] == 200) {
 }
 ```
 
-This request returns a specific report. To identify the desired report, you can either use the report hash or the report title. 
+This request returns a specific report. To identify the desired report, you can either use the report hash or the report title.
 
 ### HTTP Request
 
@@ -442,7 +434,7 @@ if($resultStatus['http_code'] == 200) {
 }
 ```
 
-This request returns the entries that make up a specific report. 
+This request returns the entries that make up a specific report.
 
 ### HTTP Request
 
@@ -560,7 +552,7 @@ if($resultStatus['http_code'] == 200) {
 }
 ```
 
-This request returns a count of the entries stored for a specific report. This can help with determining the number of elements you have to display. 
+This request returns a count of the entries stored for a specific report. This can help with determining the number of elements you have to display.
 
 ### HTTP Request
 
@@ -1088,15 +1080,13 @@ pretty    | false   | If set to true, returns the result in a "pretty print" for
 
 Only Chart, Graph, and Number widgets will be included in the request. Any Text or Datagrid widgets will not be shown. Each widget element will have the following properties:
 
-Name - This is the name you chose when creating this widget in the Report Builder.
-
-Size - Graphs (pie, bar, line) can be `small`, `medium` or `large`. Charts (fieldChart) will have a size of `fill` because they always fill the container they are placed in. Big Numbers (bigNumber) will also have a size of `fill` because they are all one size.
-
-Type - The identifier for the widget type. Valid `type` values are `fieldChart`, `bigNumber`, `bar`, `line`, and `pie`.
-
-TypeDesc - A user-friendly version of the Widget type.
-
-Hash - An unchanging value representing this specific widget on this specific form.
+Property | Description
+|--------|--------|
+Name | This is the name you chose when creating this widget in the Report Builder.
+Size | Graphs (pie, bar, line) can be `small`, `medium` or `large`. Charts (fieldChart) will have a size of `fill` because they always fill the container they are placed in. Big Numbers (bigNumber) will also have a size of `fill` because they are all one size.
+Type | The identifier for the widget type. Valid `type` values are `fieldChart`, `bigNumber`, `bar`, `line`, and `pie`.
+TypeDesc | A user-friendly version of the Widget type.
+Hash | An unchanging value representing this specific widget on this specific form.
 
 <h4 id='embed-widget'>The hash code for a widget can be used to embed the widget using Javascript</h4>
 

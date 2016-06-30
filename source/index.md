@@ -10,7 +10,6 @@ language_tabs:
 
 toc_footers:
   - <a href='http://www.wufoo.com'>Wufoo</a>
-  - <a href='http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Wufoo-REST-API-V3'>Our other API docs</a>
   - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 
 includes:
@@ -21,6 +20,7 @@ includes:
   - webhooks
   - login
   - errors
+  - tool
 
 search: true
 ---
@@ -69,10 +69,17 @@ Optional query parameters can also be added to the end of the request like so:
 
 To use any of the API functions, you'll need to use your Wufoo API Key. If you haven't already, you can follow these steps to locate your key:
 
-- Log in to your Wufoo account
-- Click the Share button beneath any of your forms
-- In the Share menu, click the API Information button to access your API credentials.
-- On that page there is a 16 digit code, which is your unique API key.
+ 1. Log in to your Wufoo account
+ 1. From the Form Manager, select **API Information** from the **More** dropdown on any form. 
+ 1. On that page there is a 16 digit code, which is your unique API key. 
+
+## Form Hashes and Field Ids
+
+Many API calls also involve using a Form's hash or the API ID for a form's field. To locate this information:
+
+ 1. Log in to your Wufoo account
+ 1. From the Form Manager, select **API Information** from the **More** dropdown on the form you want to make calls against.
+ 1. In the table below your API Key you will find an API ID for each field and your form's Hash. 
 
 <aside class="notice">
 Each sub-user on your account has their own API Key. This allows you to still enforce <a href='http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/User-Management'>User Permissions</a>, even with the API

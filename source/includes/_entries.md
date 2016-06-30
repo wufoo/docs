@@ -229,33 +229,26 @@ The various `Field##` properties correspond to the fields in the [Form Fields](#
 
 <b>Every Entry in an Entries request contains five fields. The Default Fields are:</b>
 
-EntryId - This value is the unique identifier for your entry.
+Field | Description
+|--------|--------|
+EntryId | This value is the unique identifier for your entry.
+DateCreated | The date that this entry was submitted. The date/time will be recorded in the timezone of the user making the request
+Created By | The person who created the entry. If submitted through a form, the value here will be public. If the submission originated in the Entry Manager this value will be the user name of the submitting user.
+DateUpdated | The date that this entry was edited through the Entry Manager. If the submission has never been updated, this value will be blank.
+UpdatedBy | The user name of the person who updated the entry in the Entry Manager will appear in this element.
 
-DateCreated - The date that this entry was submitted. The date/time will be recorded in the timezone of the user making the request
+<b id='entries-system'>If you add the `system` query parameter, some additional metadata fields will be included. The System Fields are:</b>
 
-Created By - The person who created the entry. If submitted through a form, the value here will be public. If the submission originated in the Entry Manager this value will be the user name of the submitting user.
-
-DateUpdated - The date that this entry was edited through the Entry Manager. If the submission has never been updated, this value will be blank.
-
-UpdatedBy - The user name of the person who updated the entry in the Entry Manager will appear in this element.
-
-<b id='entries-system'>If you add the `system` query parameter, some addtional metadata fields will be included. The System Fields are:</b>
-
-IP - The IP Address of the user submitting the form.
-
-LastPage - This represents the last page the user submitted.
-
-CompleteSubmission - Represents either a completed (`1`) or incomplete/partial (`0`) entry.
-
-Status - Indicates the payment status. An example is ‘Paid’. More info [here](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager#payment)
-
-PurchaseTotal - The total amount charged for the transaction. This is the final total we send to the payment processor
-
-Currency - The currency used. This is the currency value we send to the payment processor
-
-TransactionId - The confirmation number sent back from the payment processor.
-
-MerchantType - The name of the payment processor used. This is determined by which pyament integration is set up. There is a full list [here](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Payment-Settings)
+Field | Description
+|--------|--------|
+IP | The IP Address of the user submitting the form.
+LastPage | This represents the last page the user submitted.
+CompleteSubmission | Represents either a completed (`1`) or incomplete/partial (`0`) entry.
+Status | Indicates the payment status. An example is ‘Paid’. More info [here](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager#payment)
+PurchaseTotal | The total amount charged for the transaction. This is the final total we send to the payment processor
+Currency | The currency used. This is the currency value we send to the payment processor
+TransactionId | The confirmation number sent back from the payment processor.
+MerchantType | The name of the payment processor used. This is determined by which payment integration is set up. There is a full list [here](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Payment-Settings)
 
 ### Filtering
 
@@ -271,7 +264,7 @@ Filter{##}  | {##} should just be a unique number to identify each filter (1, 2,
 {Value}     | The value to match with your filter
 {Grouping}  | Allows you group your filters as 'AND' (all must match) or 'OR' (at least one must match)
 
-<aside class="notice">We do not adjust your input fiter date/time, so all dates/times are interpreted as PST/PDT (UTC -8/-7)</aside>
+<aside class="notice">We do not adjust your input filter date/time, so all dates/times are interpreted as PST/PDT (UTC -8/-7)</aside>
 
 Here's an example:
 
@@ -312,7 +305,7 @@ sortDirection | ASC     | The order to sort returned entries: ASC (lowest to hig
 
 The `sortDirection` parameter will only be applied if it is also used with a `sort` parameter. In other words, the `sortDirection` can only be applied to the sorting used with the `sort` value, not by itself.
 
-Example: 
+Example:
 
 `https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json?sort=EntryId&sortDirection=DESC`
 
@@ -444,7 +437,7 @@ Parameter | Default | Description
 --------- | ------- | -----------
 pretty    | false   | If set to true, returns the result in a "pretty print" format
 
-## Submit Entry 
+## Submit Entry
 
 ```shell
 curl -X POST -d "Field1=Wufoo" -d "Field2=Test" -d "Field105=API-Test" -d "Field106=42" -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/entries.json"
@@ -467,8 +460,8 @@ opener = urllib2.build_opener(handler)
 urllib2.install_opener(opener)
 
 values = {
-        'Field1' : 'Wufoo', 
-        'Field2' : 'Test', 
+        'Field1' : 'Wufoo',
+        'Field2' : 'Test',
         'Field105' : 'API-Test',
         'Field106' : '42'
 }
@@ -519,8 +512,8 @@ request({
         'sendImmediately': false
     },
     form: {
-        'Field1' : 'Wufoo', 
-        'Field2' : 'Test', 
+        'Field1' : 'Wufoo',
+        'Field2' : 'Test',
         'Field105' : 'API-Test',
         'Field106' : '42'
     }
@@ -553,7 +546,7 @@ if($resultStatus['http_code'] == 201) {
 }
 ```
 
-> The above request will recieve a response in this format:
+> The above request will receive a response in this format:
 
 ```json
 {
@@ -564,7 +557,7 @@ if($resultStatus['http_code'] == 201) {
 }
 ```
 
-This request allows you to submit a new entry to a specific form. 
+This request allows you to submit a new entry to a specific form.
 
 ### HTTP Request
 
@@ -587,8 +580,8 @@ The POST request should contain the data for the new entry submission in key/val
 Here's an example of what the key/value pairs might look like:
 
 `{
-    "Field1":   "Wufoo", 
-    "Field2":   "Test", 
+    "Field1":   "Wufoo",
+    "Field2":   "Test",
     "Field105": "API-Test",
     "Field106": "42"
  }`
@@ -628,7 +621,7 @@ opener = urllib2.build_opener(handler)
 urllib2.install_opener(opener)
 
 values = {
-        'Field1' : 'Wufoo', 
+        'Field1' : 'Wufoo',
         'Field2' : 'Test',
         'Field106' : 'Fail'
 }
@@ -678,7 +671,7 @@ request({
         'sendImmediately': false
     },
     form: {
-        'Field1' : 'Wufoo', 
+        'Field1' : 'Wufoo',
         'Field2' : 'Test',
         'Field106' : 'Fail'
 }

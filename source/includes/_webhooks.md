@@ -2,6 +2,8 @@
 
 The Webhooks API allows you to add/delete Webhooks on your form, without requiring any manual setup. For example, Zapier uses this to [set up a "Zap"](https://zapier.com/help/wufoo/#using-the-quotnew-entry-webhookquot-trigger) in your forms, without you needing to make any changes.
 
+<aside>Learn how to set your form to send metadata about entries to your webhook <a href="http://help.wufoo.com/articles/en_US/kb/Wufoo-REST-API-V3#webhooks">here</a>.</aside>
+
 Reducing the number of steps your user takes to connect your integration to Wufoo can help to increase conversion and decreases user frustration.
 
 ## Add Webhook
@@ -27,7 +29,7 @@ opener = urllib2.build_opener(handler)
 urllib2.install_opener(opener)
 
 values = {
-    'url' : 'https://www.wufoo.com', 
+    'url' : 'https://www.wufoo.com',
     'handshakeKey' : 'secret123',
     'metadata' : 'true'
 }
@@ -80,7 +82,7 @@ request({
         'sendImmediately': false
     },
     form: {
-        'url' : 'https://www.wufoo.com', 
+        'url' : 'https://www.wufoo.com',
         'handshakeKey' : 'secret123',
         'metadata' : 'true'
     }
@@ -130,9 +132,9 @@ This request updates the Webhooks for a specific form. We only allow one Webhook
 
 `PUT http://{subdomain}.wufoo.com/api/v3/forms/{identifier}/webhooks.{format}`
 
-A PUT request is [idempotent](http://stackoverflow.com/questions/46585/when-do-you-use-post-and-when-do-you-use-get/46639#46639), which means that you may safely make this call multiple times with the same data. This prevents you from accidentally adding 10 of the same Webhook URLs to one form. For example: 
+A PUT request is [idempotent](http://stackoverflow.com/questions/46585/when-do-you-use-post-and-when-do-you-use-get/46639#46639), which means that you may safely make this call multiple times with the same data. This prevents you from accidentally adding 10 of the same Webhook URLs to one form. For example:
 - You make one PUT call to the Webhook API with the `url`, `metadata`, and `handshakeKey` parameters
-- Your user decides they want to use a new handshake key. 
+- Your user decides they want to use a new handshake key.
 - You make a second API call with the same `url`, but a new `handshakeKey`, and the API will update the handshake key of the Webhook with that URL to the new `handshakeKey` parameter.
 
 ### URL Parameters
@@ -148,7 +150,7 @@ identifier| The title or hash of the form to retrieve
 Parameter    | Default | Description
 ------------ | ------- | -----------
 url          | N/A     | Required. This represents the URL that the Webhook will POST to when an entry is submitted. URL must be valid.
-handshakeKey | N/A     | Optional. Sets the [handshakeKey property](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Webhooks#getstarted). This can be used to help the receipient of the Webhooks ignore unwanted POSTs 
+handshakeKey | N/A     | Optional. Sets the [handshakeKey property](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Webhooks#getstarted). This can be used to help the recipient of the Webhooks ignore unwanted POSTs
 metadata     | false   | Optional. If set to true, the Webhook will include form/field structure data in each POST (required for some integrations)
 
 The Webhook PUT request will return a WebHookPutResult object, with a `Hash` property: the newly created/updated Webhook's "hash." This is an unchanging value representing the Webhook on your form. It's a good idea to save this value, because it acts as the Webhook identifier for a Webhook DELETE request, and you can’t retrieve it without making another request.

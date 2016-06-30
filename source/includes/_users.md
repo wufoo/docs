@@ -171,28 +171,18 @@ pretty    | false   | If set to true, returns the result in a "pretty print" for
 
 Each user will have the following properties:
 
-User: This is the name chosen when creating this user.
-
-Email: The email address on file for this user.
-
-Timezone: The offset from UTC used for certain account timestamps.
-
-Company: The company defined when this user was created.
-
-IsAccountOwner: Indicates whether the user is the Account Creator. If the user is AccountCreator, the Create(Forms/Reports/Themes) and AdminAccess values are ignored, as an AccountOwner has full rights to the account. Values can be `1` (yes) or `0` (no)
-
-CreateForms: Indicates whether or not this user may create forms. Values can be `1` (yes) or `0` (no)
-
-CreateReports: Binary value indicating whether or not this user may create reports. Values can be `1` (yes) or `0` (no)
-
-CreateThemes: Binary value indicating whether or not this user may create themes. Values can be `1` (yes) or `0` (no)
-
-AdminAccess: This indicates if the user has been designated as an Administrator. If a user has this permission, they may create forms/reports/themes and administer users. Values can be `1` (yes) or `0` (no)
-
-ApiKey: The authentication value used to make API requests for this account. Each API Key is restricted by that user's permissions as set in the account's [Users tab](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/User-Management)
-
-Hash: An unchanging value representing the user on this account.
-
-ImageUrl: Links to the images used for the user's avatar in Wufoo
-
-HttpsEnabled: No longer used, since all accounts can use HTTPS. All Wufoo forms now use HTTPS automatically, unless you decide to [manually disable](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/URL-Modifications#ssl) it through the link or embed code
+Property | Description
+|--------|--------|
+User | This is the name chosen when creating this user.
+Email | The email address on file for this user.
+Timezone | The offset from UTC used for certain account timestamps.
+Company | The company defined when this user was created.
+IsAccountOwner | Indicates whether the user is the Account Creator. If the user is AccountCreator, the Create(Forms/Reports/Themes) and AdminAccess values are ignored, as an AccountOwner has full rights to the account. Values can be `1` (yes) or `0` (no)
+CreateForms | Indicates whether or not this user may create forms. Values can be `1` (yes) or `0` (no)
+CreateReports | Binary value indicating whether or not this user may create reports. Values can be `1` (yes) or `0` (no)
+CreateThemes | Binary value indicating whether or not this user may create themes. Values can be `1` (yes) or `0` (no)
+AdminAccess | This indicates if the user has been designated as an Administrator. If a user has this permission, they may create forms/reports/themes and administer users. Values can be `1` (yes) or `0` (no)
+ApiKey | The authentication value used to make API requests for this account. Each API Key is restricted by that user's permissions as set in the account's [Users tab](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/User-Management)
+Hash | An unchanging value representing the user on this account.
+ImageUrl | Links to the images used for the user's avatar in Wufoo
+HttpsEnabled | No longer used, since all accounts can use HTTPS. All Wufoo forms now use HTTPS automatically, unless you decide to [manually disable](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/URL-Modifications#ssl) it through the link or embed code

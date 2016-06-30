@@ -148,7 +148,7 @@ if($resultStatus['http_code'] == 200) {
 }
 ```
 
-This request returns details on all the forms you have permission to access. 
+This request returns details on all the forms you have permission to access.
 
 ### HTTP Request
 
@@ -178,37 +178,24 @@ Remember you'll need to authenticate with your API Key to access this or any oth
 
 Each Form will be displayed as a separate object made up of these properties:
 
-Name - The title of the form specified in the Form Settings
-
-Description - The description of the form as specified in the Form Settings
-
-Redirect Message - The Confirmation message shown to users after they submit an entry
-
-Url - This is the "easy to remember" URL used for the form. Since it changes when the form title is changed, we recommend using the "hashed" URL instead when you need a permanent link. Can be used as a form identifier in other requests
-
-Email - A list of the email addresses that are set to receive Notification emails in the Notification Settings
-
-IsPublic - Indicates whether or not the "Public" option is enabled, allowing anyone with the link to access the form. Possible values are: 1 = true, 0 = false
-
-Language - Indicates the language set for this account in the Form Settings
-
-StartDate - The date/time the form will be accessible through the public URL
-
-EndDate - The date/time the form will no longer be accessible through the public URL
-
-EntryLimit - The maximum number of entries this form will accept before it is no longer accessible through the public URL
-
-DateCreated - A timestamp of when the form was created. For a duplicated form, this will be the DateCreated for the original form
-
-DateUpdated - A timestamp of when the form was lasted edited in the Wufoo Form Builder. For duplicated forms, the original value will also be copied from the original form
-
-Hash - A permanent, "hashed" value unique to this form on this user’s account. Can be used as a form identifier in other requests
-
-LinkFields - Link to the Fields API for a list of this form's fields
-
-LinkEntries - Link to the Entries API for a list of entries stored by this form
-
-LinkEntriesCount - Link to the Entries API for a count of the entries stored by this form
+Property | Description
+---------|------------
+Name | The title of the form specified in the Form Settings
+Description | The description of the form as specified in the Form Settings
+Redirect Message | The Confirmation message shown to users after they submit an entry
+Url | This is the "easy to remember" URL used for the form. Since it changes when the form title is changed, we recommend using the "hashed" URL instead when you need a permanent link. Can be used as a form identifier in other requests
+Email | A list of the email addresses that are set to receive Notification emails in the Notification Settings
+IsPublic | Indicates whether or not the "Public" option is enabled, allowing anyone with the link to access the form. Possible values are: 1 = true, 0 = false
+Language | Indicates the language set for this account in the Form Settings
+StartDate | The date/time the form will be accessible through the public URL
+EndDate | The date/time the form will no longer be accessible through the public URL
+EntryLimit | The maximum number of entries this form will accept before it is no longer accessible through the public URL
+DateCreated | A timestamp of when the form was created. For a duplicated form, this will be the DateCreated for the original form
+DateUpdated | A timestamp of when the form was lasted edited in the Wufoo Form Builder. For duplicated forms, the original value will also be copied from the original form
+Hash | A permanent, "hashed" value unique to this form on this user’s account. Can be used as a form identifier in other requests
+LinkFields | Link to the Fields API for a list of this form's fields
+LinkEntries | Link to the Entries API for a list of entries stored by this form
+LinkEntriesCount | Link to the Entries API for a count of the entries stored by this form
 
 ## Form
 
@@ -323,7 +310,7 @@ if($resultStatus['http_code'] == 200) {
 
 ```
 
-This request returns a specific form. To identify the desired form, you can either use the form hash or the form title. 
+This request returns a specific form. To identify the desired form, you can either use the form hash or the form title.
 
 <aside class="notice">You can find the form identifier in either the Easy to Remember or the Permanent form URLs. Making a request for all Forms will also allow you to locate the form identifiers</aside>
 
@@ -473,7 +460,7 @@ if($resultStatus['http_code'] == 200) {
       "Type": "textarea",
       "ID": "Field107"
     },
-    
+
 ```
 
 This request returns the field structure for a specific form.
@@ -499,23 +486,18 @@ Parameter | Default | Description
 system    | false   | If set to true, includes additional metadata fields
 pretty    | false   | If set to true, returns the result in a "pretty print" format
 
-<b>Most of the properties for a Field object match the options set in your Field Settings. Here a few:</b>
+<b>Most of the properties for a Field object match the options set in your Field Settings. Here are a few:</b>
 
-Title - The Field Label.
-
-Instructions - The Instructions for User (if any).
-
-IsRequired - Whether or not the field has been marked as Required in the Field Settings. This value can be 1 = true or 0 = false
-
-ClassNames - Any values that were added to the CSS Keywords option in the Form Builder.
-
-ID - The API ID for that field. This is what you'll use for [submitting new entries](#submit-entry), or using URL Modification and Templating
-
-Label - If a field has a SubFields or Choices property (meaning there are multiple fields or options), each sub-field or choice will have its own label. This is the value stored for Dropdown, Multiple Choice, or Checkbox fields. For fields like Name and Address, these are the values of the different sub-fields 
-
-DefaultVal - If the field has a Predefined Value set in the Field Settings, it will be displayed here. Otherwise, the value will be "0"
-
-Page - Indicates which page of the form the field is added to. On a single page form (no Page Breaks) all fields will be on Page 1
+Property | Description
+------|------------
+Title | The Field Label.
+Instructions | The Instructions for User (if any).
+IsRequired | Whether or not the field has been marked as Required in the Field Settings. This value can be 1 = true or 0 = false
+ClassNames | Any values that were added to the CSS Keywords option in the Form Builder.
+ID** - The API ID for that field. This is what you'll use for [submitting new entries](#submit-entry), or using URL Modification and Templating
+Label | If a field has a SubFields or Choices property (meaning there are multiple fields or options), each sub-field or choice will have its own label. This is the value stored for Dropdown, Multiple Choice, or Checkbox fields. For fields like Name and Address, these are the values of the different sub-fields
+DefaultVal | If the field has a Predefined Value set in the Field Settings, it will be displayed here. Otherwise, the value will be "0"
+Page | Indicates which page of the form the field is added to. On a single page form (no Page Breaks) all fields will be on Page 1
 
 <aside class="warning">Fields that are marked as "Admin Only" are not returned via the API. "Hidden" and encrypted fields will be shown</aside>
 
@@ -803,7 +785,7 @@ Dropdown fields have the `HasOtherField` property as well, but they can't actual
 ```
 Each choice also has a Score property, representing that choice's "value" relative to the other choices. If the Not Applicable option is enabled in the Field Settings, there will be an additional Choice with a score of 0
 
-```json 
+```json
     {
       "Title": "Rating",
       "Instructions": "",
@@ -893,25 +875,20 @@ Each choice also has a Score property, representing that choice's "value" relati
     }
 ```
 These are only included if you set the `system` query parameter.
-If you set `system` to any value (`system=true`, `system=false`, etc), the fields will be included, so if you don't want the System Fields, leave the `system` paramter out (Don't just set it to `false`). This parameter is also available in the [Entries API](#entries-system)
+If you set `system` to any value (`system=true`, `system=false`, etc), the fields will be included, so if you don't want the System Fields, leave the `system` parameter out (Don't just set it to `false`). This parameter is also available in the [Entries API](#entries-system)
 
 <b>The System Fields are:</b>
 
-IP - The IP Address of the user submitting the form.
-
-LastPage - This represents the last page the user submitted.
-
-CompleteSubmission - Represents either a completed (`1`) or incomplete/partial (`0`) entry.
-
-Status - Indicates the payment status. An example is ‘Paid’. More info [here](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager#payment)
-
-PurchaseTotal - The total amount charged for the transaction. This is the final total we send to the payment processor
-
-Currency - The currency used. This is the currency value we send to the payment processor
-
-TransactionId - The confirmation number sent back from the payment processor.
-
-MerchantType - The name of the payment processor used. This is determined by which pyament integration is set up. There is a full list [here](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Payment-Settings)
+Field | Description
+------|------------
+IP | The IP Address of the user submitting the form.
+LastPage | This represents the last page the user submitted.
+CompleteSubmission | Represents either a completed (`1`) or incomplete/partial (`0`) entry.
+Status** - Indicates the payment status. An example is ‘Paid’. More info [here](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager#payment)
+PurchaseTotal | The total amount charged for the transaction. This is the final total we send to the payment processor
+Currency | The currency used. This is the currency value we send to the payment processor
+TransactionId | The confirmation number sent back from the payment processor.
+MerchantType | The name of the payment processor used. This is determined by which payment integration is set up. There is a full list [here](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Payment-Settings)
 
 ## Form Comments
 
@@ -1055,15 +1032,13 @@ pageSize  | 25      | The number of comments returned in the request (Maximum of
 
 <b>Here are the properties of each Comment:</b>
 
-CommentId - A unique ID for this comment.
-
-CommentedBy - The name of the person who commented on this entry.
-
-DateCreated - The date on which the comment was made.
-
-EntryId - Is the unique ID of the entry to which this comment is associated.
-
-Text - The comment itself.
+Property | Description
+------ | -----------
+CommentId | A unique ID for this comment.
+CommentedBy | The name of the person who commented on this entry.
+DateCreated | The date on which the comment was made.
+EntryId | Is the unique ID of the entry to which this comment is associated.
+Text | The comment itself.
 
 ## Comments Count
 
@@ -1158,7 +1133,7 @@ if($resultStatus['http_code'] == 200) {
 }
 ```
 
-This request returns a count of all comments made on this form's entries 
+This request returns a count of all comments made on this form's entries
 
 ### HTTP Request
 
