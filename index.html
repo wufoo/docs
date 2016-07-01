@@ -51,7 +51,7 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Wufoo API! You can use our API to access your forms, entries, reports, and more. You can also submit new entries, and even add or remove Webhooks.</p>
+<p>Welcome to the Wufoo API! You can use our API to access your <a href="http://help.wufoo.com/articles/en_US/kb/Form-Builder?bc=Creating_Forms">forms</a>, <a href="http://help.wufoo.com/articles/en_US/kb/Entry-Manager">entries</a>, <a href="http://help.wufoo.com/articles/en_US/kb/Report-Manager?bc=Creating_Reports">reports</a>, submit new entries, and add or remove Webhooks.</p>
 
 <h2 id="structure">Structure</h2>
 
@@ -461,11 +461,11 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 </thead><tbody>
 <tr>
 <td>Name</td>
-<td>The title of the form specified in the Form Settings</td>
+<td>The title of the form specified in <a href="http://help.wufoo.com/articles/en_US/kb/Form-Settings">Form Settings</a></td>
 </tr>
 <tr>
 <td>Description</td>
-<td>The description of the form as specified in the Form Settings</td>
+<td>The description of the form as specified in the <a href="http://help.wufoo.com/articles/en_US/kb/Form-Settings">Form Settings</a></td>
 </tr>
 <tr>
 <td>Redirect Message</td>
@@ -473,19 +473,19 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 </tr>
 <tr>
 <td>Url</td>
-<td>This is the &ldquo;easy to remember&rdquo; URL used for the form. Since it changes when the form title is changed, we recommend using the &ldquo;hashed&rdquo; URL instead when you need a permanent link. Can be used as a form identifier in other requests</td>
+<td>This is the &ldquo;easy to remember&rdquo; URL used for the form. Since it changes when the form title is changed, we recommend using the <a href="help.wufoo.com/articles/en_US/kb/Wufoo-REST-API-V3#findingaformshash">hashed</a> URL instead when you need a permanent link. This hash can be used as a form identifier in other requests</td>
 </tr>
 <tr>
 <td>Email</td>
-<td>A list of the email addresses that are set to receive Notification emails in the Notification Settings</td>
+<td>A list of the email addresses that are set to receive <a href="http://help.wufoo.com/articles/en_US/kb/Email-Notifications">Notification emails</a> in the Notification Settings</td>
 </tr>
 <tr>
 <td>IsPublic</td>
-<td>Indicates whether or not the &ldquo;Public&rdquo; option is enabled, allowing anyone with the link to access the form. Possible values are: 1 = true, 0 = false</td>
+<td>Indicates whether or not the <a href="http://help.wufoo.com/articles/en_US/kb/Public-Private-Forms">Public</a> option is enabled, allowing anyone with the link to access the form. Possible values are: 1 = true, 0 = false</td>
 </tr>
 <tr>
 <td>Language</td>
-<td>Indicates the language set for this account in the Form Settings</td>
+<td>Indicates the language set for this account in the <a href="http://help.wufoo.com/articles/en_US/kb/Form-Settings">Form Settings</a></td>
 </tr>
 <tr>
 <td>StartDate</td>
@@ -509,19 +509,19 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 </tr>
 <tr>
 <td>Hash</td>
-<td>A permanent, &ldquo;hashed&rdquo; value unique to this form on this user’s account. Can be used as a form identifier in other requests</td>
+<td>A permanent, hashed value unique to this form on this user’s account. Can be used as a form identifier in other requests</td>
 </tr>
 <tr>
 <td>LinkFields</td>
-<td>Link to the Fields API for a list of this form&rsquo;s fields</td>
+<td>Reference URL for a list of this form&rsquo;s fields</td>
 </tr>
 <tr>
 <td>LinkEntries</td>
-<td>Link to the Entries API for a list of entries stored by this form</td>
+<td>Reference URL for a list of entries stored by this form</td>
 </tr>
 <tr>
 <td>LinkEntriesCount</td>
-<td>Link to the Entries API for a count of the entries stored by this form</td>
+<td>Reference URL for a count of the entries stored by this form</td>
 </tr>
 </tbody></table>
 
@@ -850,7 +850,7 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 </tr>
 </tbody></table>
 
-<p><b>Most of the properties for a Field object match the options set in your Field Settings. Here are a few:</b></p>
+<p>Most of the properties for a Field object match the options set in your Field Settings. Here are a few:</p>
 
 <table><thead>
 <tr>
@@ -874,16 +874,33 @@ Remember you&rsquo;ll need to authenticate with your API Key to access this or a
 <td>ClassNames</td>
 <td>Any values that were added to the CSS Keywords option in the Form Builder.</td>
 </tr>
+<tr>
+<td>ID</td>
+<td>The API ID for that field. This is what you&rsquo;ll use for <a href="#submit-entry">submitting new entries</a>, or using URL Modification and Templating</td>
+</tr>
+<tr>
+<td>Label</td>
+<td>If a field has a SubFields or Choices property (meaning there are multiple fields or options), each sub-field or choice will have its own label. This is the value stored for Dropdown, Multiple Choice, or Checkbox fields. For fields like Name and Address, these are the values of the different sub-fields</td>
+</tr>
+<tr>
+<td>DefaultVal</td>
+<td>If the field has a Predefined Value set in the Field Settings, it will be displayed here. Otherwise, the value will be &ldquo;0&rdquo;</td>
+</tr>
+<tr>
+<td>Page</td>
+<td>Indicates which page of the form the field is added to. On a single page form (no Page Breaks) all fields will be on Page 1</td>
+</tr>
 </tbody></table>
-
-<p>ID** - The API ID for that field. This is what you&rsquo;ll use for <a href="#submit-entry">submitting new entries</a>, or using URL Modification and Templating
-Label | If a field has a SubFields or Choices property (meaning there are multiple fields or options), each sub-field or choice will have its own label. This is the value stored for Dropdown, Multiple Choice, or Checkbox fields. For fields like Name and Address, these are the values of the different sub-fields
-DefaultVal | If the field has a Predefined Value set in the Field Settings, it will be displayed here. Otherwise, the value will be &ldquo;0&rdquo;
-Page | Indicates which page of the form the field is added to. On a single page form (no Page Breaks) all fields will be on Page 1</p>
 
 <aside class="warning">Fields that are marked as &ldquo;Admin Only&rdquo; are not returned via the API. &ldquo;Hidden&rdquo; and encrypted fields will be shown</aside>
 
-<h4 id='checkbox'>Checkbox fields will have SubFields property that is an array of all the field options</h4>
+<h3 id="checkbox-fields">Checkbox Fields</h3>
+
+<p><a href="http://help.wufoo.com/articles/en_US/kb/Checkboxes">Checkbox fields</a> will have SubFields property that is an array of all the field options. Each SubField element also has it&rsquo;s own ID. This is what allows you to &ldquo;check&rdquo; more than one option.</p>
+
+<blockquote>
+<p>Checkbox Example</p>
+</blockquote>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkbox"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -913,9 +930,13 @@ Page | Indicates which page of the form the field is added to. On a single page 
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
 
-<p>Notice how each SubField element also has it&rsquo;s own ID. This is what allows you to &ldquo;check&rdquo; more than one option</p>
+<h3 id="multiple-choice-fields">Multiple Choice Fields</h3>
 
-<h4 id='mc'>Multiple Choice fields have a Choices property that is an array of all options</h4>
+<p><a href="http://help.wufoo.com/articles/en_US/kb/Multiple-Choices">Multiple Choice fields</a> have a Choices property that is an array of all options. Multiple Choice fields have a <code class="prettyprint">HasOtherField</code> property, this value is either true or false and is only set if the &ldquo;Allow Other&rdquo; option was enabled in the Field Settings. When the HasOtherField is true, the last choice is the &ldquo;other&rdquo; field.</p>
+
+<blockquote>
+<p>Multiple Choice Field Example </p>
+</blockquote>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Multiple Choice"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -940,11 +961,13 @@ Page | Indicates which page of the form the field is added to. On a single page 
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
 
-<p>Multiple Choice fields have a <code class="prettyprint">HasOtherField</code> property:</p>
+<h3 id="dropdown-fields">Dropdown Fields</h3>
 
-<p>HasOtherField - This value is either true or false and is only set if the &ldquo;Allow Other&rdquo; option was enabled in the Field Settings. When the HasOtherField is true, the last choice is the &ldquo;other&rdquo; field.</p>
+<p><a href="http://help.wufoo.com/articles/en_US/kb/Dropdown">Dropdown fields</a> also have a Choices property with an array of all options. Dropdown fields have the <code class="prettyprint">HasOtherField</code> property as well, but they can&rsquo;t actually use the &ldquo;Allow Other&rdquo; option like Multiple Choice fields.</p>
 
-<h4 id='dd'>Dropdown fields also have a Choices property: an array of all options</h4>
+<blockquote>
+<p>Dropdown Field Example</p>
+</blockquote>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dropdown"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1004,9 +1027,13 @@ Page | Indicates which page of the form the field is added to. On a single page 
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
 
-<p>Dropdown fields have the <code class="prettyprint">HasOtherField</code> property as well, but they can&rsquo;t actually use the &ldquo;Allow Other&rdquo; option like Multiple Choice fields.</p>
+<h3 id="address-fields">Address Fields</h3>
 
-<h4 id='address'>Address fields have a SubFields property with one element for each part of the address</h4>
+<p><a href="http://help.wufoo.com/articles/en_US/kb/Address">Address fields</a> have a SubFields property with one element for each part of the address.</p>
+
+<blockquote>
+<p>Address Field Example</p>
+</blockquote>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1111,7 +1138,13 @@ Page | Indicates which page of the form the field is added to. On a single page 
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
 
-<h4 id='likert'>Likert fields have a SubFields property for the &ldquo;rows&rdquo; and a Choices property for the &ldquo;columns&rdquo;</h4>
+<h3 id="likert-fields">Likert Fields</h3>
+
+<p>Likert fields have a <code class="prettyprint">SubFields</code> property for the &ldquo;rows&rdquo; and a <code class="prettyprint">Choices</code> property for the &ldquo;columns&rdquo;. Each choice also has a Score property, representing that choice&rsquo;s &ldquo;value&rdquo; relative to the other choices. If the Not Applicable option is enabled in the Field Settings, there will be an additional Choice with a score of 0.</p>
+
+<blockquote>
+<p>Likert Fields Example</p>
+</blockquote>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Likert"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1160,7 +1193,9 @@ Page | Indicates which page of the form the field is added to. On a single page 
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
 
-<p>Each choice also has a Score property, representing that choice&rsquo;s &ldquo;value&rdquo; relative to the other choices. If the Not Applicable option is enabled in the Field Settings, there will be an additional Choice with a score of 0</p>
+<blockquote>
+<p>Rating Field Example</p>
+</blockquote>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rating"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -1173,7 +1208,9 @@ Page | Indicates which page of the form the field is added to. On a single page 
     </span><span class="p">}</span><span class="err">,</span><span class="w">
 </span></code></pre>
 
-<h4 id='meta'>These are the default metadata fields</h4>
+<blockquote>
+<p>Default Metadata Fields</p>
+</blockquote>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date Created"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
@@ -1198,7 +1235,9 @@ Page | Indicates which page of the form the field is added to. On a single page 
 </span><span class="err">}</span><span class="w">
 </span></code></pre>
 
-<h4 id='system'>Here are the System Fields</h4>
+<blockquote>
+<p>System Fields</p>
+</blockquote>
 <pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Title"</span><span class="p">:</span><span class="s2">"Payment Status"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"IsSystem"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -1248,6 +1287,8 @@ Page | Indicates which page of the form the field is added to. On a single page 
       </span><span class="s2">"ID"</span><span class="p">:</span><span class="s2">"CompleteSubmission"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h3 id="system-fields">System Fields</h3>
 
 <p>These are only included if you set the <code class="prettyprint">system</code> query parameter.
 If you set <code class="prettyprint">system</code> to any value (<code class="prettyprint">system=true</code>, <code class="prettyprint">system=false</code>, etc), the fields will be included, so if you don&rsquo;t want the System Fields, leave the <code class="prettyprint">system</code> parameter out (Don&rsquo;t just set it to <code class="prettyprint">false</code>). This parameter is also available in the <a href="#entries-system">Entries API</a></p>
@@ -1384,6 +1425,8 @@ MerchantType | The name of the payment processor used. This is determined by whi
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h3 id="comments-on-form-entries">Comments on Form Entries</h3>
 
 <p>This request returns any comments made on this form&rsquo;s entries in the <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager">Entry Manager</a></p>
 
@@ -3683,7 +3726,7 @@ MerchantType | The name of the payment processor used. This is determined by whi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This request returns details of the widgets that make up a specific report.</p>
+<p>This request returns details of the widgets that make up a specific report. The hash code for a widget can be used to embed the widget using Javascript.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3756,8 +3799,6 @@ MerchantType | The name of the payment processor used. This is determined by whi
 <td>An unchanging value representing this specific widget on this specific form.</td>
 </tr>
 </tbody></table>
-
-<h4 id='embed-widget'>The hash code for a widget can be used to embed the widget using Javascript</h4>
 
 <blockquote>
 <p>Example widget embed code:</p>
