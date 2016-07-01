@@ -180,22 +180,22 @@ Each Form will be displayed as a separate object made up of these properties:
 
 Property | Description
 ---------|------------
-Name | The title of the form specified in the Form Settings
-Description | The description of the form as specified in the Form Settings
+Name | The title of the form specified in [Form Settings](http://help.wufoo.com/articles/en_US/kb/Form-Settings)
+Description | The description of the form as specified in the [Form Settings](http://help.wufoo.com/articles/en_US/kb/Form-Settings)
 Redirect Message | The Confirmation message shown to users after they submit an entry
-Url | This is the "easy to remember" URL used for the form. Since it changes when the form title is changed, we recommend using the "hashed" URL instead when you need a permanent link. Can be used as a form identifier in other requests
-Email | A list of the email addresses that are set to receive Notification emails in the Notification Settings
-IsPublic | Indicates whether or not the "Public" option is enabled, allowing anyone with the link to access the form. Possible values are: 1 = true, 0 = false
-Language | Indicates the language set for this account in the Form Settings
+Url | This is the "easy to remember" URL used for the form. Since it changes when the form title is changed, we recommend using the [hashed](help.wufoo.com/articles/en_US/kb/Wufoo-REST-API-V3#findingaformshash) URL instead when you need a permanent link. This hash can be used as a form identifier in other requests
+Email | A list of the email addresses that are set to receive [Notification emails](http://help.wufoo.com/articles/en_US/kb/Email-Notifications) in the Notification Settings
+IsPublic | Indicates whether or not the [Public](http://help.wufoo.com/articles/en_US/kb/Public-Private-Forms) option is enabled, allowing anyone with the link to access the form. Possible values are: 1 = true, 0 = false
+Language | Indicates the language set for this account in the [Form Settings](http://help.wufoo.com/articles/en_US/kb/Form-Settings)
 StartDate | The date/time the form will be accessible through the public URL
 EndDate | The date/time the form will no longer be accessible through the public URL
 EntryLimit | The maximum number of entries this form will accept before it is no longer accessible through the public URL
 DateCreated | A timestamp of when the form was created. For a duplicated form, this will be the DateCreated for the original form
 DateUpdated | A timestamp of when the form was lasted edited in the Wufoo Form Builder. For duplicated forms, the original value will also be copied from the original form
-Hash | A permanent, "hashed" value unique to this form on this user’s account. Can be used as a form identifier in other requests
-LinkFields | Link to the Fields API for a list of this form's fields
-LinkEntries | Link to the Entries API for a list of entries stored by this form
-LinkEntriesCount | Link to the Entries API for a count of the entries stored by this form
+Hash | A permanent, hashed value unique to this form on this user’s account. Can be used as a form identifier in other requests
+LinkFields | Reference URL for a list of this form's fields
+LinkEntries | Reference URL for a list of entries stored by this form
+LinkEntriesCount | Reference URL for a count of the entries stored by this form
 
 ## Form
 
@@ -486,7 +486,7 @@ Parameter | Default | Description
 system    | false   | If set to true, includes additional metadata fields
 pretty    | false   | If set to true, returns the result in a "pretty print" format
 
-<b>Most of the properties for a Field object match the options set in your Field Settings. Here are a few:</b>
+Most of the properties for a Field object match the options set in your Field Settings. Here are a few:
 
 Property | Description
 ------|------------
@@ -494,15 +494,18 @@ Title | The Field Label.
 Instructions | The Instructions for User (if any).
 IsRequired | Whether or not the field has been marked as Required in the Field Settings. This value can be 1 = true or 0 = false
 ClassNames | Any values that were added to the CSS Keywords option in the Form Builder.
-ID** - The API ID for that field. This is what you'll use for [submitting new entries](#submit-entry), or using URL Modification and Templating
+ID | The API ID for that field. This is what you'll use for [submitting new entries](#submit-entry), or using URL Modification and Templating
 Label | If a field has a SubFields or Choices property (meaning there are multiple fields or options), each sub-field or choice will have its own label. This is the value stored for Dropdown, Multiple Choice, or Checkbox fields. For fields like Name and Address, these are the values of the different sub-fields
 DefaultVal | If the field has a Predefined Value set in the Field Settings, it will be displayed here. Otherwise, the value will be "0"
 Page | Indicates which page of the form the field is added to. On a single page form (no Page Breaks) all fields will be on Page 1
 
 <aside class="warning">Fields that are marked as "Admin Only" are not returned via the API. "Hidden" and encrypted fields will be shown</aside>
 
+###Checkbox Fields
 
-<h4 id='checkbox'>Checkbox fields will have SubFields property that is an array of all the field options</h4>
+[Checkbox fields](http://help.wufoo.com/articles/en_US/kb/Checkboxes) will have SubFields property that is an array of all the field options. Each SubField element also has it's own ID. This is what allows you to "check" more than one option.
+
+> Checkbox Example
 
 ```json
     {
@@ -533,9 +536,12 @@ Page | Indicates which page of the form the field is added to. On a single page 
       "ID": "Field108"
     },
 ```
-Notice how each SubField element also has it's own ID. This is what allows you to "check" more than one option
 
-<h4 id='mc'>Multiple Choice fields have a Choices property that is an array of all options</h4>
+###Multiple Choice Fields
+
+[Multiple Choice fields](http://help.wufoo.com/articles/en_US/kb/Multiple-Choices) have a Choices property that is an array of all options. Multiple Choice fields have a `HasOtherField` property, this value is either true or false and is only set if the "Allow Other" option was enabled in the Field Settings. When the HasOtherField is true, the last choice is the "other" field.
+
+> Multiple Choice Field Example 
 
 ```json
     {
@@ -561,11 +567,11 @@ Notice how each SubField element also has it's own ID. This is what allows you t
       "HasOtherField": false
     },
 ```
-Multiple Choice fields have a `HasOtherField` property:
+###Dropdown Fields
 
-HasOtherField - This value is either true or false and is only set if the "Allow Other" option was enabled in the Field Settings. When the HasOtherField is true, the last choice is the "other" field.
+[Dropdown fields](http://help.wufoo.com/articles/en_US/kb/Dropdown) also have a Choices property with an array of all options. Dropdown fields have the `HasOtherField` property as well, but they can't actually use the "Allow Other" option like Multiple Choice fields.
 
-<h4 id='dd'>Dropdown fields also have a Choices property: an array of all options</h4>
+> Dropdown Field Example
 
 ```json
     {
@@ -626,10 +632,12 @@ HasOtherField - This value is either true or false and is only set if the "Allow
       "ID": "Field210"
     },
 ```
-Dropdown fields have the `HasOtherField` property as well, but they can't actually use the "Allow Other" option like Multiple Choice fields.
+###Address Fields
 
+[Address fields](http://help.wufoo.com/articles/en_US/kb/Address) have a SubFields property with one element for each part of the address.
 
-<h4 id='address'>Address fields have a SubFields property with one element for each part of the address</h4>
+>Address Field Example
+
 ```json
     {
       "Title": "Address",
@@ -734,7 +742,12 @@ Dropdown fields have the `HasOtherField` property as well, but they can't actual
       "ID": "Field222"
     },
 ```
-<h4 id='likert'>Likert fields have a SubFields property for the "rows" and a Choices property for the "columns"</h4>
+###Likert Fields
+
+Likert fields have a `SubFields` property for the "rows" and a `Choices` property for the "columns". Each choice also has a Score property, representing that choice's "value" relative to the other choices. If the Not Applicable option is enabled in the Field Settings, there will be an additional Choice with a score of 0.
+
+> Likert Fields Example
+
 ```json
     {
       "Title": "Likert",
@@ -783,7 +796,8 @@ Dropdown fields have the `HasOtherField` property as well, but they can't actual
       "HasOtherField": false
     },
 ```
-Each choice also has a Score property, representing that choice's "value" relative to the other choices. If the Not Applicable option is enabled in the Field Settings, there will be an additional Choice with a score of 0
+
+> Rating Field Example
 
 ```json
     {
@@ -797,7 +811,8 @@ Each choice also has a Score property, representing that choice's "value" relati
       "ID": "Field223"
     },
 ```
-<h4 id='meta'>These are the default metadata fields</h4>
+> Default Metadata Fields
+
 ```json
     {
       "Title": "Date Created",
@@ -822,7 +837,7 @@ Each choice also has a Score property, representing that choice's "value" relati
   ]
 }
 ```
-<h4 id='system'>Here are the System Fields</h4>
+> System Fields
 
 ```json
     {
@@ -874,6 +889,8 @@ Each choice also has a Score property, representing that choice's "value" relati
       "ID":"CompleteSubmission"
     }
 ```
+###System Fields
+
 These are only included if you set the `system` query parameter.
 If you set `system` to any value (`system=true`, `system=false`, etc), the fields will be included, so if you don't want the System Fields, leave the `system` parameter out (Don't just set it to `false`). This parameter is also available in the [Entries API](#entries-system)
 
@@ -1004,6 +1021,7 @@ if($resultStatus['http_code'] == 200) {
   ]
 }
 ```
+###Comments on Form Entries
 
 This request returns any comments made on this form's entries in the [Entry Manager](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager)
 

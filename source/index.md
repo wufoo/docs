@@ -27,7 +27,7 @@ search: true
 
 # Introduction
 
-Welcome to the Wufoo API! You can use our API to access your forms, entries, reports, and more. You can also submit new entries, and even add or remove Webhooks.
+Welcome to the Wufoo API! You can use our API to access your [forms](http://help.wufoo.com/articles/en_US/kb/Form-Builder?bc=Creating_Forms), [entries](http://help.wufoo.com/articles/en_US/kb/Entry-Manager), [reports](http://help.wufoo.com/articles/en_US/kb/Report-Manager?bc=Creating_Reports), submit new entries, and add or remove Webhooks.
 
 ## Structure
 

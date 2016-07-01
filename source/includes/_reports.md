@@ -1058,7 +1058,7 @@ if($resultStatus['http_code'] == 200) {
 }
 ```
 
-This request returns details of the widgets that make up a specific report.
+This request returns details of the widgets that make up a specific report. The hash code for a widget can be used to embed the widget using Javascript.
 
 ### HTTP Request
 
@@ -1087,8 +1087,6 @@ Size | Graphs (pie, bar, line) can be `small`, `medium` or `large`. Charts (fiel
 Type | The identifier for the widget type. Valid `type` values are `fieldChart`, `bigNumber`, `bar`, `line`, and `pie`.
 TypeDesc | A user-friendly version of the Widget type.
 Hash | An unchanging value representing this specific widget on this specific form.
-
-<h4 id='embed-widget'>The hash code for a widget can be used to embed the widget using Javascript</h4>
 
 > Example widget embed code:
 
