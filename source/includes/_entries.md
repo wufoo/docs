@@ -203,7 +203,7 @@ This request returns the entries that have been submitted to a specific form. Th
 
 ### HTTP Request
 
-`GET http://{subdomain}.wufoo.com/api/v3/forms/entries/{identifier}.{format}`
+`GET http://{subdomain}.wufoo.com/api/v3/forms/{identifier}/entries.{format}`
 
 
 ### URL Parameters
