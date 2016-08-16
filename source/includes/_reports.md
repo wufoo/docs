@@ -438,7 +438,7 @@ This request returns the entries that make up a specific report.
 
 ### HTTP Request
 
-`GET http://{subdomain}.wufoo.com/api/v3/forms/entries/{identifier}.{format}`
+`GET http://{subdomain}.wufoo.com/api/v3/reports/{identifier}/entries.{format}`
 
 
 ### URL Parameters
