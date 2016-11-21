@@ -1313,13 +1313,27 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 <td>CompleteSubmission</td>
 <td>Represents either a completed (<code class="prettyprint">1</code>) or incomplete/partial (<code class="prettyprint">0</code>) entry.</td>
 </tr>
+<tr>
+<td>Status</td>
+<td>Indicates the payment status. An example is ‘Paid’. More info <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager#payment">here</a></td>
+</tr>
+<tr>
+<td>PurchaseTotal</td>
+<td>The total amount charged for the transaction. This is the final total we send to the payment processor</td>
+</tr>
+<tr>
+<td>Currency</td>
+<td>The currency used. This is the currency value we send to the payment processor</td>
+</tr>
+<tr>
+<td>TransactionId</td>
+<td>The confirmation number sent back from the payment processor.</td>
+</tr>
+<tr>
+<td>MerchantType</td>
+<td>The name of the payment processor used. This is determined by which payment integration is set up. There is a full list <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Payment-Settings">here</a></td>
+</tr>
 </tbody></table>
-
-<p>Status** - Indicates the payment status. An example is ‘Paid’. More info <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Entry-Manager#payment">here</a>
-PurchaseTotal | The total amount charged for the transaction. This is the final total we send to the payment processor
-Currency | The currency used. This is the currency value we send to the payment processor
-TransactionId | The confirmation number sent back from the payment processor.
-MerchantType | The name of the payment processor used. This is determined by which payment integration is set up. There is a full list <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Payment-Settings">here</a></p>
 
 <h2 id="form-comments">Form Comments</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms/s1afea8b1vk0jf7/comments.json"</span>
