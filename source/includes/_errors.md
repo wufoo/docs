@@ -13,5 +13,5 @@ Error Code | Message | Meaning
 `404` | `Not Found`                                                                   | Normally caused by a malformed request URL
 `409` | `Multiple accounts exist for this email address. Please specify a subdomain in a subsequent call`      | No subdomain included in Login request
 `420` | `Too many login attempts. You are only allowed 6 failed attempts. Account temporarily frozen`          | Too many failed Login requests
-`421` | `You have exceeded your daily API usage`                             | More than 5000 requests have been made using this API Key in the last 24 hours
+`421` | `You have exceeded your daily API usage`                             | You have exceeded the request limit for your plan in the last 24 hours
 `500` | Various                                                           | Server error. Send our support team the request you used, and we can take a closer look
