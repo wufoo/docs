@@ -87,7 +87,7 @@ Each sub-user on your account has their own API Key. This allows you to still en
 
 ## Restrictions
 
-We currently restrict API usage to 5000 requests per key, per day. This means that an account can make 5000 requests per sub-user, per day.
+We currently restrict API usage per key, per day. Your API usage is dependent on your plan. Check out how many requests you have per day on our <a href='https://www.wufoo.com/pricing/'>pricing page</a>.
 
 For security, API request can only be made using HTTPS. Our servers will block request made using SSLv3 or lower, so be sure to force TLSv1 or higher if your default SSL/TLS version is different.
 
