@@ -149,7 +149,7 @@ Each sub-user on your account has their own API Key. This allows you to still en
 
 <h2 id="restrictions">Restrictions</h2>
 
-<p>We currently restrict API usage to 5000 requests per key, per day. This means that an account can make 5000 requests per sub-user, per day.</p>
+<p>We currently restrict API usage per key, per day. Your API usage is dependent on your plan. Check out how many requests you have per day on our <a href='https://www.wufoo.com/pricing/'>pricing page</a>.</p>
 
 <p>For security, API request can only be made using HTTPS. Our servers will block request made using SSLv3 or lower, so be sure to force TLSv1 or higher if your default SSL/TLS version is different.</p>
 
@@ -4613,7 +4613,7 @@ the subdomain parameter is required. </p>
 <tr>
 <td><code class="prettyprint">421</code></td>
 <td><code class="prettyprint">You have exceeded your daily API usage</code></td>
-<td>More than 5000 requests have been made using this API Key in the last 24 hours</td>
+<td>You have exceeded the request limit for your plan in the last 24 hours</td>
 </tr>
 <tr>
 <td><code class="prettyprint">500</code></td>
