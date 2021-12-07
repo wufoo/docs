@@ -736,11 +736,3 @@ FieldErrors | This will be an array of ID and ErrorText pairs for each affected 
 RedirectUrl | If the form has a [Redirect](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Settings#confirmation) set up, that URL will be included in the response
 
 <aside class="warning">If you get an error about invalid dates, the specified format `MM/DD/YYYY` is incorrect. The correct date format is YYYYMMDD</aside>
-
-### Restrictions
-
-Additionally, it is not possible to make an Entry POST request to a private form, even if the user making the request (the API Key used) has permissions to view/edit that form, or is an Administrator. If you need a "protected" form which can accept submissions via the API, you can use this alternate setup:
-
-1. Set the form to Public in the [Form Manager](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Manager#public).
-2. Add a password to prevent unauthorized access.
-3. Access the form via the API using a key with permissions to view/edit that form.
