@@ -2568,16 +2568,6 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 
 <aside class="warning">If you get an error about invalid dates, the specified format `MM/DD/YYYY` is incorrect. The correct date format is YYYYMMDD</aside>
 
-<h3 id="restrictions">Restrictions</h3>
-
-<p>Additionally, it is not possible to make an Entry POST request to a private form, even if the user making the request (the API Key used) has permissions to view/edit that form, or is an Administrator. If you need a &ldquo;protected&rdquo; form which can accept submissions via the API, you can use this alternate setup:</p>
-
-<ol>
-<li>Set the form to Public in the <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Manager#public">Form Manager</a>.</li>
-<li>Add a password to prevent unauthorized access.</li>
-<li>Access the form via the API using a key with permissions to view/edit that form.</li>
-</ol>
-
           <h1 id="reports">Reports</h1>
 
 <h2 id="all-reports">All Reports</h2>
