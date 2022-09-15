@@ -2420,6 +2420,21 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </tr>
 </tbody></table>
 
+<h3 id="failed-submissions">Failed Submissions</h3>
+
+<h3 id="rate-limit">Rate Limit</h3>
+
+<blockquote>
+<p>This example shows the server response when the submit entry rate limit is exceeded</p>
+</blockquote>
+    <pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"Text"</span><span class="p">:</span><span class="s2">"Slow Down"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"HTTPCode"</span><span class="p">:</span><span class="mi">429</span><span class="p"></span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>To prevent malicious bot activity and reduce strain on Wufoo services, entries submitted via the Wufoo v3 API are limited to 50 submissions per Wufoo User in a 5 minute sliding window. Entries which exceed this limit will receive a HTTP 429 response. For more information on this and other Wufoo HTTP Status Codes see <a href="#http-status-codes">here</a>.</p>
+
 <blockquote>
 <p>Note this POST request is missing a value for Field105 (a required Text field) and has a text value submitted for Field106 (a Number field)</p>
 </blockquote>
@@ -2538,7 +2553,7 @@ If you set <code class="prettyprint">system</code> to any value (<code class="pr
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="failed-submissions">Failed Submissions</h3>
+<h3 id="bad-request">Bad Request</h3>
 
 <p>An Entries POST can fail for a few different reasons. A submission through the API must still adhere to any <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Field-Settings">field validation</a> or <a href="http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Settings#limit">form activity limits</a>. If these are not respected, the PostResponse will return with a &#39;Success&rsquo; value of &#39;0&rsquo;. In this case, the PostResponse will contain some alternate properties:</p>
 
@@ -4604,6 +4619,11 @@ the subdomain parameter is required. </p>
 <td><code class="prettyprint">421</code></td>
 <td><code class="prettyprint">You have exceeded your daily API usage</code></td>
 <td>You have exceeded the request limit for your plan in the last 24 hours</td>
+</tr>
+<tr>
+<td><code class="prettyprint">429</code></td>
+<td><code class="prettyprint">Slow Down</code></td>
+<td>You have exceeded the API Rate Limit. Try again in a few minutes.</td>
 </tr>
 <tr>
 <td><code class="prettyprint">500</code></td>
