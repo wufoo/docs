@@ -598,6 +598,21 @@ EntryId     | If the submission was a success, this value will be the EntryId as
 EntryLink   | If the submission was a success, this value will be the URL for an [Entries](#form-entries) request, filtered for this entry
 RedirectUrl | If the form has a [Redirect](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Settings#confirmation) set up, that URL will be included in the response
 
+### Failed Submissions
+
+>This example shows the server response when the submit entry rate limit is exceeded
+
+```json
+{
+    "Text":"Slow Down",
+    "HTTPCode":429
+}
+```
+
+#### Rate Limit
+
+To prevent malicious bot activity and reduce strain on Wufoo services, entries submitted via the Wufoo v3 API are limited to 50 submissions per Wufoo User in a 5 minute sliding window. Entries which exceed this limit will receive a HTTP 429 response. For more information on this and other Wufoo HTTP Status Codes see [here](#http-status-codes).
+
 >Note this POST request is missing a value for Field105 (a required Text field) and has a text value submitted for Field106 (a Number field)
 
 ```shell
@@ -724,7 +739,7 @@ if($resultStatus['http_code'] == 200 || $resultStatus['http_code'] == 201) {
 }
 ```
 
-### Failed Submissions
+#### Bad Request
 
 An Entries POST can fail for a few different reasons. A submission through the API must still adhere to any [field validation](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Field-Settings) or [form activity limits](http://help.wufoo.com/articles/en_US/SurveyMonkeyArticleType/Form-Settings#limit). If these are not respected, the PostResponse will return with a 'Success' value of '0'. In this case, the PostResponse will contain some alternate properties:
 
