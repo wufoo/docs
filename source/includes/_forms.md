@@ -6,6 +6,12 @@
 curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms.json"
 ```
 
+With pagination (limit and page as query parameters):
+
+```shell
+curl -u "AOI6-LFKL-VM1Q-IEX9":"footastic" "https://fishbowl.wufoo.com/api/v3/forms.json?limit=10&page=1"
+```
+
 ```python
 import urllib2
 import json
@@ -167,6 +173,8 @@ format    | Either 'json' or 'xml' is required. This will determine response for
 
 Parameter          | Default | Description
 ------------------ | ------- | -----------
+page               | 1       | Page number for pagination. Must be a positive number; if invalid, defaults to 1.
+limit              | 1000    | Number of forms to return per page. Default is 1000, maximum is 1000. Negative numbers are not supported.
 includeTodayCount  | false   | If set to true, includes the number of entries received today
 pretty             | false   | If set to true, returns the result in a "pretty print" format
 
