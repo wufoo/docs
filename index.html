@@ -263,6 +263,9 @@ You&rsquo;ll need to replace 'username&rsquo; with your API key, and password wi
 <h2 id="all-forms">All Forms</h2>
 <pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms.json"</span>
 </code></pre>
+<p>With pagination (limit and page as query parameters):</p>
+<pre class="highlight shell"><code>curl -u <span class="s2">"AOI6-LFKL-VM1Q-IEX9"</span>:<span class="s2">"footastic"</span> <span class="s2">"https://fishbowl.wufoo.com/api/v3/forms.json?limit=3&amp;page=1"</span>
+</code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
@@ -433,6 +436,16 @@ You&rsquo;ll need to replace 'username&rsquo; with your API key, and password wi
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>Page number for pagination. Must be a positive number; if invalid, defaults to 1.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>1000</td>
+<td>Number of forms to return per page. Default is 1000, maximum is 1000. Negative numbers are not supported.</td>
+</tr>
 <tr>
 <td>includeTodayCount</td>
 <td>false</td>
